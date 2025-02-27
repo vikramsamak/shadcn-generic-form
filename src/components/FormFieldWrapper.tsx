@@ -7,13 +7,8 @@ import {
   FormMessage,
 } from "./ui/form";
 import { cn } from "@/lib/utils";
-import { Control, Path, FieldValues } from "react-hook-form";
-import { FormFieldConfig } from "@/types";
-
-interface FormFieldWrapperProps<T extends FieldValues> {
-  formField: FormFieldConfig<T>;
-  control: Control<T>;
-}
+import { Path, FieldValues } from "react-hook-form";
+import { FormFieldWrapperProps } from "@/types";
 
 function FormFieldWrapper<T extends FieldValues>({
   formField,

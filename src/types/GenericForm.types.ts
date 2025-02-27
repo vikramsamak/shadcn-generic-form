@@ -1,21 +1,7 @@
 import { z, ZodObject, ZodRawShape } from "zod";
-import { DefaultValues, FieldValues, Path } from "react-hook-form";
+import { DefaultValues } from "react-hook-form";
+import { FormFieldConfig } from "./FormField.types";
 
-// ✅ Form Field Definition
-export interface FormFieldConfig<T extends FieldValues> {
-  name: Path<T>;
-  label: string;
-  component: React.ElementType;
-  props?: Record<string, unknown>;
-  width?: "full" | "half" | string;
-  eventProp?: string;
-  valueProp?: string;
-  condition?: (values: T) => boolean;
-  customEventHandler?: (event: unknown, field: unknown) => void;
-  description?: string;
-}
-
-// ✅ Generic Form Props
 export interface GenericFormProps<T extends ZodObject<ZodRawShape>> {
   formConfig: {
     formFields: FormFieldConfig<z.infer<T>>[];
