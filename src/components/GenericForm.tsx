@@ -6,6 +6,7 @@ import { Form } from "./ui/form";
 import { cn } from "@/lib/utils";
 import FormFieldWrapper from "./FormFieldWrapper";
 import FormActions from "./FormActions";
+import { JSX } from "react";
 
 const getLayoutClassName = (
   layout: "grid" | "flex",
@@ -24,7 +25,7 @@ function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
   formSettings,
   layoutSettings,
   actions,
-}: GenericFormProps<T>) {
+}: GenericFormProps<T>): JSX.Element {
   const { formFields, validationSchema, defaultValues } = formConfig;
   const { layout = "flex", columns, gap } = layoutSettings ?? {};
   const { mode = "onSubmit", disabled, className } = formSettings ?? {};
