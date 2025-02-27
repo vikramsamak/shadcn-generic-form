@@ -1,11 +1,12 @@
 import { FormActionsProps } from "@/types";
+import { JSX } from "react";
 
 function FormActions({
   disabled,
   submitButtonText,
   cancelButtonText,
   onCancel,
-}: FormActionsProps) {
+}: FormActionsProps): JSX.Element {
   return (
     <div className="flex gap-4 mt-4">
       <button type="submit" disabled={disabled} className="btn-primary">

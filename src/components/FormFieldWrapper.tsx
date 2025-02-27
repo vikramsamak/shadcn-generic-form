@@ -9,11 +9,12 @@ import {
 import { cn } from "@/lib/utils";
 import { Path, FieldValues } from "react-hook-form";
 import { FormFieldWrapperProps } from "@/types";
+import { JSX } from "react";
 
 function FormFieldWrapper<T extends FieldValues>({
   formField,
   control,
-}: FormFieldWrapperProps<T>) {
+}: FormFieldWrapperProps<T>): JSX.Element {
   const {
     name,
     label,
