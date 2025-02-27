@@ -35,6 +35,8 @@ function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
     onSubmit,
     onError,
     onCancel,
+    cancelBtnClassName,
+    submitBtnClassName,
   } = actions;
 
   type FormSchema = z.infer<T>;
@@ -70,6 +72,8 @@ function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
         <FormActions
           submitButtonText={submitButtonText}
           cancelButtonText={cancelButtonText}
+          submitBtnClassName={submitBtnClassName}
+          cancelBtnClassName={cancelBtnClassName}
           disabled={disabled}
           onCancel={onCancel}
         />

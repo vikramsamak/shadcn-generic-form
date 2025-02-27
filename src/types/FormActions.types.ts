@@ -3,4 +3,6 @@ export interface FormActionsProps {
   submitButtonText: string;
   cancelButtonText?: string;
   onCancel?: () => void;
+  submitBtnClassName?: string;
+  cancelBtnClassName?: string;
 }

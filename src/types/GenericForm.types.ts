@@ -24,6 +24,8 @@ export interface GenericFormProps<T extends ZodObject<ZodRawShape>> {
   actions: {
     submitButtonText?: string;
     cancelButtonText?: string;
+    submitBtnClassName?: string;
+    cancelBtnClassName?: string;
     onSubmit: (values: z.infer<T>) => void;
     onError?: (errors: Record<string, unknown>) => void;
     onCancel?: () => void;
