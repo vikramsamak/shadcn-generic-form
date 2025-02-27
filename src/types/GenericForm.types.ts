@@ -1,9 +1,9 @@
-import { TypeOf, z, ZodObject } from "zod";
+import { z, ZodObject, ZodRawShape } from "zod";
 import { DefaultValues, FieldValues, Path } from "react-hook-form";
 
-// Form Field Definition
-export interface FormFieldConfig<T extends FieldValues = FieldValues> {
-  name: Path<T>; // ✅ Ensure it's a valid form field path
+// ✅ Form Field Definition
+export interface FormFieldConfig<T extends FieldValues> {
+  name: Path<T>;
   label: string;
   component: React.ElementType;
   props?: Record<string, unknown>;
@@ -15,12 +15,12 @@ export interface FormFieldConfig<T extends FieldValues = FieldValues> {
   description?: string;
 }
 
-// Generic Form Props
-export interface GenericFormProps<T extends FieldValues> {
+// ✅ Generic Form Props
+export interface GenericFormProps<T extends ZodObject<ZodRawShape>> {
   formConfig: {
-    formFields: FormFieldConfig<T>[];
-    validationSchema: ZodObject<T>;
-    defaultValues: DefaultValues<TypeOf<ZodObject<T>>>;
+    formFields: FormFieldConfig<z.infer<T>>[];
+    validationSchema: T;
+    defaultValues: DefaultValues<z.infer<T>>;
   };
 
   formSettings?: {
@@ -38,7 +38,7 @@ export interface GenericFormProps<T extends FieldValues> {
   actions: {
     submitButtonText?: string;
     cancelButtonText?: string;
-    onSubmit: (values: z.infer<ZodObject<T>>) => void;
+    onSubmit: (values: z.infer<T>) => void;
     onError?: (errors: Record<string, unknown>) => void;
     onCancel?: () => void;
   };
