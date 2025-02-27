@@ -1,9 +1,4 @@
-interface FormActionsProps {
-  disabled?: boolean;
-  submitButtonText: string;
-  cancelButtonText?: string;
-  onCancel?: () => void;
-}
+import { FormActionsProps } from "@/types";
 
 function FormActions({
   disabled,
