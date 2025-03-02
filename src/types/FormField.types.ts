@@ -1,6 +1,9 @@
-import { FieldValues, Path } from "react-hook-form";
+import { ControllerRenderProps, FieldValues, Path } from "react-hook-form";
 
-export interface FormFieldConfig<T extends FieldValues> {
+export interface FormFieldConfig<
+  T extends FieldValues,
+  E extends Event = Event
+> {
   name: Path<T>;
   label: string;
   component: React.ElementType;
@@ -9,6 +12,6 @@ export interface FormFieldConfig<T extends FieldValues> {
   eventProp?: string;
   valueProp?: string;
   condition?: (values: T) => boolean;
-  customEventHandler?: (event: unknown, field: unknown) => void;
+  customEventHandler?: (event: E, field: ControllerRenderProps<T>) => void;
   description?: string;
 }
