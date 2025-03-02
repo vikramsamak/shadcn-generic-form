@@ -7,7 +7,7 @@ import {
   FormMessage,
 } from "./ui/form";
 import { cn } from "@/lib/utils";
-import { Path, FieldValues } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { FormFieldWrapperProps } from "@/types";
 import { JSX } from "react";
 
@@ -30,12 +30,12 @@ function FormFieldWrapper<T extends FieldValues>({
   return (
     <FormField
       control={control}
-      name={name as Path<T>}
+      name={name}
       render={({ field }) => {
         const eventHandler = eventProp
           ? {
               [eventProp]: customEventHandler
-                ? (e: unknown) => customEventHandler(e, field)
+                ? <E extends Event>(e: E) => customEventHandler(e, field)
                 : field.onChange,
             }
           : {};
