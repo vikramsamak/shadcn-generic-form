@@ -1,0 +1,63 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "shadcn-generic-form",
+  "homepage": "https://github.com/vikramsamak/shadcn-generic-form",
+  "items": [
+    {
+      "name": "shadcn-generic-form",
+      "type": "registry:component",
+      "title": "Shadcn-Generic-Form",
+      "description": "A highly flexible and configurable form component for ShadCN, powered by React Hook Form and Zod. Easily define fields, validation, layout, and actions with a simple configuration",
+      "author": "Vikram Samak",
+      "files": [
+        {
+          "path": "src/generic-form/index.ts",
+          "type": "registry:file",
+          "target": "src/components/generic-form/index.ts"
+        },
+        {
+          "path": "src/generic-form/FormActions.tsx",
+          "type": "registry:component",
+          "target": "src/components/generic-form/FormActions.tsx"
+        },
+        {
+          "path": "src/generic-form/FormFieldWrapper.tsx",
+          "type": "registry:component",
+          "target": "src/components/generic-form/FormFieldWrapper.tsx"
+        },
+        {
+          "path": "src/generic-form/GenericForm.tsx",
+          "type": "registry:component",
+          "target": "src/components/generic-form/GenericForm.tsx"
+        },
+        {
+          "path": "src/types/index.ts",
+          "type": "registry:file",
+          "target": "src/types/index.ts"
+        },
+        {
+          "path": "src/types/FormActions.types.ts",
+          "type": "registry:file",
+          "target": "src/types/FormActions.types.ts"
+        },
+        {
+          "path": "src/types/FormField.types.ts",
+          "type": "registry:file",
+          "target": "src/types/FormField.types.ts"
+        },
+        {
+          "path": "src/types/FormFieldWrapper.types.ts",
+          "type": "registry:file",
+          "target": "src/types/FormFieldWrapper.types.ts"
+        },
+        {
+          "path": "src/types/GenericForm.types.ts",
+          "type": "registry:file",
+          "target": "src/types/GenericForm.types.ts"
+        }
+      ],
+      "dependencies": ["@hookform/resolvers", "zod", "react-hook-form"],
+      "registryDependencies": ["button", "form", "label"]
+    }
+  ]
+}
