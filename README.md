@@ -18,9 +18,7 @@ A highly flexible and customizable **Generic Form** component built with **ShadC
 ## 📦 Installation
 
 ```sh
-npm install shadcn-generic-form
-# or
-yarn add shadcn-generic-form
+npx shadcn@latest add https://shadcn-generic-form.vercel.app/shadcn-generic-form.json
 ```
 
 ---
@@ -56,9 +54,9 @@ yarn add shadcn-generic-form
 ```tsx
 import { GenericForm } from './components/generic-form';
 import { z } from 'zod';
-import { Input } from './components/ui/input';
-import { Checkbox } from './components/ui/checkbox';
-import { Slider } from './components/ui/slider';
+import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Slider } from '@/components/ui/slider';
 
 const formFields = [
   {
