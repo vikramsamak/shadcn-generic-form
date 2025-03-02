@@ -5,11 +5,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { cn } from "@/lib/utils";
-import { FieldValues } from "react-hook-form";
-import { FormFieldWrapperProps } from "@/types";
-import { JSX } from "react";
+} from './ui/form';
+import { cn } from '@/lib/utils';
+import { FieldValues } from 'react-hook-form';
+import { FormFieldWrapperProps } from '@/types';
+import { JSX } from 'react';
 
 function FormFieldWrapper<T extends FieldValues>({
   formField,
@@ -20,7 +20,7 @@ function FormFieldWrapper<T extends FieldValues>({
     label,
     component: FieldComponent,
     props,
-    width = "full",
+    width = 'full',
     eventProp,
     valueProp,
     customEventHandler,
@@ -42,7 +42,7 @@ function FormFieldWrapper<T extends FieldValues>({
         const valueHandler = valueProp ? { [valueProp]: field.value } : {};
 
         return (
-          <FormItem className={cn(width === "half" ? "w-1/2" : "w-full")}>
+          <FormItem className={cn(width === 'half' ? 'w-1/2' : 'w-full')}>
             <FormLabel>{label}</FormLabel>
             <FormControl>
               <FieldComponent

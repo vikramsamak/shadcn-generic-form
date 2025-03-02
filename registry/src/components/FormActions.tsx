@@ -1,7 +1,7 @@
-import { FormActionsProps } from "@/types";
-import { JSX } from "react";
-import { Button } from "./ui/button";
-import { cn } from "@/lib/utils";
+import { FormActionsProps } from '@/types';
+import { JSX } from 'react';
+import { Button } from './ui/button';
+import { cn } from '@/lib/utils';
 
 function FormActions({
   disabled,
@@ -11,7 +11,7 @@ function FormActions({
   cancelBtnClassName,
   submitBtnClassName,
 }: FormActionsProps): JSX.Element {
-  const submitButtonWidth = cancelButtonText && onCancel ? "w-1/2" : "w-full";
+  const submitButtonWidth = cancelButtonText && onCancel ? 'w-1/2' : 'w-full';
 
   return (
     <div className="flex gap-4 mt-4">
@@ -26,7 +26,7 @@ function FormActions({
         <Button
           type="button"
           onClick={onCancel}
-          className={cn("w-1/2", cancelBtnClassName)}
+          className={cn('w-1/2', cancelBtnClassName)}
         >
           {cancelButtonText}
         </Button>

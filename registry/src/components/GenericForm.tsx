@@ -1,21 +1,21 @@
-import { GenericFormProps } from "@/types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z, ZodObject } from "zod";
-import { Form } from "./ui/form";
-import { cn } from "@/lib/utils";
-import { JSX } from "react";
-import FormActions from "./FormActions";
-import FormFieldWrapper from "./FormFieldWrapper";
+import { GenericFormProps } from '@/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z, ZodObject } from 'zod';
+import { Form } from './ui/form';
+import { cn } from '@/lib/utils';
+import { JSX } from 'react';
+import FormActions from './FormActions';
+import FormFieldWrapper from './FormFieldWrapper';
 
 const getLayoutClassName = (
-  layout: "grid" | "flex",
+  layout: 'grid' | 'flex',
   columns?: number,
   gap?: number
 ) =>
   cn(
-    layout === "grid" ? "grid" : "flex flex-wrap",
-    layout === "grid"
+    layout === 'grid' ? 'grid' : 'flex flex-wrap',
+    layout === 'grid'
       ? `grid-cols-${columns || 2} gap-${gap || 4}`
       : `gap-${gap || 4}`
   );
@@ -27,10 +27,10 @@ function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
   actions,
 }: GenericFormProps<T>): JSX.Element {
   const { formFields, validationSchema, defaultValues } = formConfig;
-  const { layout = "flex", columns, gap } = layoutSettings ?? {};
-  const { mode = "onSubmit", disabled, className } = formSettings ?? {};
+  const { layout = 'flex', columns, gap } = layoutSettings ?? {};
+  const { mode = 'onSubmit', disabled, className } = formSettings ?? {};
   const {
-    submitButtonText = "Submit",
+    submitButtonText = 'Submit',
     cancelButtonText,
     onSubmit,
     onError,
@@ -53,7 +53,7 @@ function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit, onError)}
-        className={cn("space-y-4", className)}
+        className={cn('space-y-4', className)}
       >
         <div className={getLayoutClassName(layout, columns, gap)}>
           {formFields.map((formField) => {
