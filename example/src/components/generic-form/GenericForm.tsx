@@ -48,7 +48,6 @@ function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
   });
 
   const values = form.watch();
-console.log(values);
 
   return (
     <Form {...form}>
