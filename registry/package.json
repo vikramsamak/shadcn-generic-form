@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",
+    "dev": "vite",
     "registry:build": "shadcn build",
+    "registry:build-dist": "shadcn build --output ../example/public/",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write ."
