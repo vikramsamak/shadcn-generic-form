@@ -5,7 +5,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from './ui/form';
+} from '@/components/ui/form';
 import { cn } from '@/lib/utils';
 import { FieldValues } from 'react-hook-form';
 import { FormFieldWrapperProps } from '@/types';

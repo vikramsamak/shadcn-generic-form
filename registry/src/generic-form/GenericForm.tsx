@@ -2,7 +2,7 @@ import { GenericFormProps } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z, ZodObject } from 'zod';
-import { Form } from './ui/form';
+import { Form } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
 import { JSX } from 'react';
 import FormActions from './FormActions';
