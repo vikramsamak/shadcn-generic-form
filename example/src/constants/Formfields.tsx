@@ -73,10 +73,15 @@ export const FORM_FIELDS: FormFieldConfig<any, any>[] = [
     props: {
       children: (
         <>
-          <RadioGroupItem value="option1" id="option1" />
-          <label htmlFor="option1">Option 1</label>
-          <RadioGroupItem value="option2" id="option2" />
-          <label htmlFor="option2">Option 2</label>
+          <span className="flex items-center gap-2">
+            <RadioGroupItem value="option1" id="option1" />
+            <label htmlFor="option1">Option 1</label>
+          </span>
+
+          <span className="flex items-center gap-2">
+            <RadioGroupItem value="option2" id="option2" />
+            <label htmlFor="option2">Option 2</label>
+          </span>
         </>
       ),
     },
