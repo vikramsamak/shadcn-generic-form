@@ -1,10 +1,16 @@
 import Header from "./components/header";
+import ConfigPanel from "./components/playground/ConfigPanel";
+import { PlaygroundProvider } from "./contexts/PlaygroundContext";
 
 function App() {
   return (
     <>
       <Header />
-      <main></main>
+      <PlaygroundProvider>
+        <main>
+          <ConfigPanel />
+        </main>
+      </PlaygroundProvider>
     </>
   );
 }
