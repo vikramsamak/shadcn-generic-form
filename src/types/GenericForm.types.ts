@@ -4,7 +4,7 @@ import { FormFieldConfig } from "./FormField.types";
 
 export interface GenericFormProps<T extends ZodObject<ZodRawShape>> {
   formConfig: {
-    formFields: FormFieldConfig<z.infer<T>>[];
+    formFields: FormFieldConfig<z.infer<T>, Event>[];
     validationSchema: T;
     defaultValues: DefaultValues<z.infer<T>>;
   };
