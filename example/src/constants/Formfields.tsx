@@ -50,7 +50,7 @@ export const FORM_FIELDS: FormFieldConfig<any, any>[] = [
       ),
     },
     eventProp: "onValueChange",
-    valueProp: "value",
+    valueProp: "defaultValue",
   },
   {
     name: "checkbox",
