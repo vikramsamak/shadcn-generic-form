@@ -32,21 +32,26 @@ function FormFieldWrapper<T extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => {
+        const { onChange, value, ...fieldWithoutOnChangeAndValue } = field;
+
         const eventHandler = eventProp
           ? {
               [eventProp]: customEventHandler
                 ? <E extends Event>(e: E) => customEventHandler(e, field)
                 : field.onChange,
             }
-          : {};
-        const valueHandler = valueProp ? { [valueProp]: field.value } : {};
+          : onChange;
+
+        const valueHandler = valueProp
+          ? { [valueProp]: field.value }
+          : { value };
 
         return (
           <FormItem className={cn(width === 'half' ? 'w-1/2' : 'w-full')}>
             <FormLabel>{label}</FormLabel>
             <FormControl>
               <FieldComponent
-                {...field}
+                {...fieldWithoutOnChangeAndValue}
                 {...props}
                 {...eventHandler}
                 {...valueHandler}
