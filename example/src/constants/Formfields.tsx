@@ -60,8 +60,8 @@ export const FORM_FIELDS: FormFieldConfig<any, any>[] = [
     valueProp: "checked",
   },
   {
-    name: "switch",
-    label: "Switch",
+    name: "toggle",
+    label: "Toggle",
     component: Switch,
     eventProp: "onCheckedChange",
     valueProp: "checked",
