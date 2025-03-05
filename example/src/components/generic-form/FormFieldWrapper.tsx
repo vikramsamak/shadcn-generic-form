@@ -40,7 +40,7 @@ function FormFieldWrapper<T extends FieldValues>({
                 ? <E extends Event>(e: E) => customEventHandler(e, field)
                 : field.onChange,
             }
-          : onChange;
+          : { onChange };
 
         const valueHandler = valueProp
           ? { [valueProp]: field.value }
