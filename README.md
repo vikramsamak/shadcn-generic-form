@@ -34,17 +34,14 @@ npx shadcn@latest add https://shadcn-generic-form.vercel.app/shadcn-generic-form
 | `layoutSettings` | `{ layout?: 'flex' \| 'grid'; columns?: number; gap?: number; }` | Controls the layout structure of the form. |
 | `actions`        | `{ submitButtonText?: string; cancelButtonText?: string; submitBtnClassName?: string; cancelBtnClassName?: string; onSubmit: (values: z.infer<T>) => void; onError?: (errors: Record<string, unknown>) => void; onCancel?: () => void; }` | Event handlers and customization for form actions. |
 
-### `FormFieldConfig<T>`
-
-| Prop                 | Type                                                      | Description |
-|----------------------|----------------------------------------------------------|-------------|
-| `name`              | `Path<T>`                                                 | The name of the form field, used for binding with React Hook Form. |
-| `label`             | `string`                                                  | The label displayed for the field. |
-| `render`            | `(field: ControllerRenderProps<T>) => React.ReactElement` | A function that returns a React element to render for the field. |
-| `props`             | `Record<string, unknown>`                                | Additional props passed to the component. |
-| `width`             | `'full' | 'half'                                           | Defines the width of the form field. Defaults to 'full'. |
-| `condition`         | `(values: T) => boolean`                                  | A function that determines if the field should be displayed. |
-| `description`       | `string`                                                  | Additional description or hint text for the field. |
+| Prop           | Type                                         | Description |
+|----------------|----------------------------------------------|-------------|
+| `name`         | `Path<T>`                                   | The name of the form field, used for binding with React Hook Form. |
+| `label`        | `string`                                    | The label displayed for the field. |
+| `render`       | `(field: ControllerRenderProps<T>) => React.ReactElement` | A function that returns a React element to render for the field. |
+| `width`        | `'full'`, or `'half'`, or `string`              | Defines the width of the form field. Defaults to `'full'`. |
+| `condition`    | `(values: T) => boolean`                     | A function that determines if the field should be displayed. |
+| `description`  | `string`                                    | Additional description or hint text for the field. |
 
 ## 🚀 Usage Example
 
