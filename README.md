@@ -34,19 +34,16 @@ npx shadcn@latest add https://shadcn-generic-form.vercel.app/shadcn-generic-form
 | `layoutSettings` | `{ layout?: 'flex' \| 'grid'; columns?: number; gap?: number; }` | Controls the layout structure of the form. |
 | `actions`        | `{ submitButtonText?: string; cancelButtonText?: string; submitBtnClassName?: string; cancelBtnClassName?: string; onSubmit: (values: z.infer<T>) => void; onError?: (errors: Record<string, unknown>) => void; onCancel?: () => void; }` | Event handlers and customization for form actions. |
 
-### `FormFieldConfig<T, E>`
+### `FormFieldConfig<T>`
 
 | Prop                 | Type                                                      | Description |
 |----------------------|----------------------------------------------------------|-------------|
 | `name`              | `Path<T>`                                                 | The name of the form field, used for binding with React Hook Form. |
 | `label`             | `string`                                                  | The label displayed for the field. |
-| `component`         | `React.ElementType`                                       | The UI component used for rendering the field. |
+| `render`            | `(field: ControllerRenderProps<T>) => React.ReactElement` | A function that returns a React element to render for the field. |
 | `props`             | `Record<string, unknown>`                                | Additional props passed to the component. |
-| `width`             | `'full' \| 'half' \| string`                              | Defines the width of the form field. Defaults to 'full'. |
-| `eventProp`         | `string`                                                  | The event prop name to handle value changes (e.g., `onValueChange` for sliders). |
-| `valueProp`         | `string`                                                  | The prop name for the field value (e.g., `value`). |
+| `width`             | `'full' | 'half'                                           | Defines the width of the form field. Defaults to 'full'. |
 | `condition`         | `(values: T) => boolean`                                  | A function that determines if the field should be displayed. |
-| `customEventHandler` | `(event: E, field: ControllerRenderProps<T>) => void`    | A custom event handler function. |
 | `description`       | `string`                                                  | Additional description or hint text for the field. |
 
 ## 🚀 Usage Example
@@ -62,20 +59,17 @@ const formFields = [
   {
     name: 'fullName',
     label: 'Full Name',
-    component: Input,
+    render: (field) => <Input {...field} />,
   },
   {
     name: 'agreeToTerms',
     label: 'Agree to Terms',
-    component: Checkbox,
-    valueProp: 'checked',
+    render: (field) => <Checkbox checked={field.value} onCheckedChange={field.onChange} />,
   },
   {
     name: 'ageRange',
     label: 'Select Age Range',
-    component: Slider,
-    eventProp: 'onValueChange',
-    valueProp: 'value',
+    render: (field) => <Slider onValueChange={field.onChange} value={field.value} />,
   },
 ];
 

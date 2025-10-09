@@ -6,12 +6,9 @@ export interface FormFieldConfig<
 > {
   name: Path<T>;
   label: string;
-  component: React.ElementType;
+  render: (field: ControllerRenderProps<T>) => React.ReactElement;
   props?: Record<string, unknown>;
   width?: 'full' | 'half' | string;
-  eventProp?: string;
-  valueProp?: string;
   condition?: (values: T) => boolean;
-  customEventHandler?: (event: E, field: ControllerRenderProps<T>) => void;
   description?: string;
 }
