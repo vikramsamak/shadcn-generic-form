@@ -57,8 +57,9 @@ function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
       >
         <div className={getLayoutClassName(layout, columns, gap)}>
           {formFields.map((formField) => {
-            if (formField.condition && !formField.condition(values))
+            if (formField.condition && !formField.condition(values)) {
               return null;
+            }
 
             return (
               <FormFieldWrapper<FormSchema>
