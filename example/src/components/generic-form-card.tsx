@@ -50,7 +50,7 @@ function GenericFormCard() {
   });
 
   return (
-    <Card className="w-full max-w-2xl shadow-lg rounded-2xl">
+    <Card className="w-full shadow-lg rounded-2xl">
       <CardHeader className="flex flex-col gap-2">
         <div className="flex items-center gap-3">
           <FileText className="w-6 h-6 text-primary" /> {/* Icon */}
