@@ -1,6 +1,6 @@
-import { Github } from "lucide-react";
-import { ModeToggle } from "./mode-toggle";
-import { Button } from "./ui/button";
+import { Github } from 'lucide-react';
+import { ModeToggle } from './mode-toggle';
+import { Button } from './ui/button';
 
 export default function Header() {
   return (

@@ -1,39 +1,39 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Switch } from "@/components/ui/switch";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Slider } from "@/components/ui/slider";
-import { DatePicker } from "@/components/ui/date-picker";
-import { FormFieldConfig } from "@/types";
-import { ControllerRenderProps } from "react-hook-form";
+} from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Switch } from '@/components/ui/switch';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Slider } from '@/components/ui/slider';
+import { DatePicker } from '@/components/ui/date-picker';
+import { FormFieldConfig } from '@/types';
+import { ControllerRenderProps } from 'react-hook-form';
 
 export const FORM_FIELDS: FormFieldConfig<any>[] = [
   {
-    name: "text",
-    label: "Text Input",
+    name: 'text',
+    label: 'Text Input',
     render: (field: ControllerRenderProps<any>) => (
       <Input {...field} type="text" placeholder="Enter text" />
     ),
   },
   {
-    name: "textarea",
-    label: "Textarea",
+    name: 'textarea',
+    label: 'Textarea',
     render: (field: ControllerRenderProps<any>) => (
       <Textarea {...field} placeholder="Enter details" />
     ),
   },
   {
-    name: "select",
-    label: "Select",
+    name: 'select',
+    label: 'Select',
     render: (field: ControllerRenderProps<any>) => (
       <Select onValueChange={field.onChange} defaultValue={field.value}>
         <SelectTrigger>
@@ -47,22 +47,22 @@ export const FORM_FIELDS: FormFieldConfig<any>[] = [
     ),
   },
   {
-    name: "checkbox",
-    label: "Checkbox",
+    name: 'checkbox',
+    label: 'Checkbox',
     render: (field: ControllerRenderProps<any>) => (
       <Checkbox checked={field.value} onCheckedChange={field.onChange} />
     ),
   },
   {
-    name: "toggle",
-    label: "Toggle",
+    name: 'toggle',
+    label: 'Toggle',
     render: (field: ControllerRenderProps<any>) => (
       <Switch checked={field.value} onCheckedChange={field.onChange} />
     ),
   },
   {
-    name: "radio",
-    label: "Radio Group",
+    name: 'radio',
+    label: 'Radio Group',
     render: (field: ControllerRenderProps<any>) => (
       <RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
         <span className="flex items-center gap-2">
@@ -77,8 +77,8 @@ export const FORM_FIELDS: FormFieldConfig<any>[] = [
     ),
   },
   {
-    name: "slider",
-    label: "Slider",
+    name: 'slider',
+    label: 'Slider',
     render: (field: ControllerRenderProps<any>) => (
       <Slider
         defaultValue={[33]}
@@ -90,8 +90,8 @@ export const FORM_FIELDS: FormFieldConfig<any>[] = [
     ),
   },
   {
-    name: "datePicker",
-    label: "Date Picker",
+    name: 'datePicker',
+    label: 'Date Picker',
     render: (field: ControllerRenderProps<any>) => (
       <DatePicker onSelect={field.onChange} selected={field.value} />
     ),

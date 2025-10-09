@@ -5,16 +5,8 @@
   "title": "Shadcn-Generic-Form",
   "author": "Vikram Samak",
   "description": "A highly flexible and configurable form component for ShadCN, powered by React Hook Form and Zod. Easily define fields, validation, layout, and actions with a simple configuration",
-  "dependencies": [
-    "@hookform/resolvers",
-    "zod",
-    "react-hook-form"
-  ],
-  "registryDependencies": [
-    "button",
-    "form",
-    "label"
-  ],
+  "dependencies": ["@hookform/resolvers", "zod", "react-hook-form"],
+  "registryDependencies": ["button", "form", "label"],
   "files": [
     {
       "path": "src/generic-form/index.ts",

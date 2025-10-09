@@ -1,6 +1,6 @@
-import { ScrollArea } from "./components/ui/scroll-area";
-import Header from "./components/header";
-import GenericFormCard from "./components/generic-form-card";
+import { ScrollArea } from './components/ui/scroll-area';
+import Header from './components/header';
+import GenericFormCard from './components/generic-form-card';
 
 function App() {
   return (

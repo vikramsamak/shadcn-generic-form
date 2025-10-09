@@ -1,6 +1,6 @@
-import { z, ZodObject, ZodRawShape } from "zod";
-import { DefaultValues } from "react-hook-form";
-import { FormFieldConfig } from "./FormField.types";
+import { z, ZodObject, ZodRawShape } from 'zod';
+import { DefaultValues } from 'react-hook-form';
+import { FormFieldConfig } from './FormField.types';
 
 export interface GenericFormProps<T extends ZodObject<ZodRawShape>> {
   formConfig: {
@@ -10,13 +10,13 @@ export interface GenericFormProps<T extends ZodObject<ZodRawShape>> {
   };
 
   formSettings?: {
-    mode?: "onSubmit" | "onBlur" | "onChange" | "all";
+    mode?: 'onSubmit' | 'onBlur' | 'onChange' | 'all';
     disabled?: boolean;
     className?: string;
   };
 
   layoutSettings?: {
-    layout?: "flex" | "grid";
+    layout?: 'flex' | 'grid';
     columns?: number;
     gap?: number;
   };
