@@ -1,22 +1,22 @@
-import { z, ZodObject, ZodRawShape } from 'zod';
-import { DefaultValues } from 'react-hook-form';
-import { FormFieldConfig } from './FormField.types';
+import { z, ZodObject, ZodRawShape } from "zod";
+import { DefaultValues } from "react-hook-form";
+import { FormFieldConfig } from "./FormField.types";
 
 export interface GenericFormProps<T extends ZodObject<ZodRawShape>> {
   formConfig: {
-    formFields: FormFieldConfig<z.infer<T>, Event>[];
+    formFields: FormFieldConfig<z.infer<T>>[];
     validationSchema: T;
     defaultValues: DefaultValues<z.infer<T>>;
   };
 
   formSettings?: {
-    mode?: 'onSubmit' | 'onBlur' | 'onChange' | 'all';
+    mode?: "onSubmit" | "onBlur" | "onChange" | "all";
     disabled?: boolean;
     className?: string;
   };
 
   layoutSettings?: {
-    layout?: 'flex' | 'grid';
+    layout?: "flex" | "grid";
     columns?: number;
     gap?: number;
   };

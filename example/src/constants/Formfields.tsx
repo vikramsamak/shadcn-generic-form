@@ -14,22 +14,23 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Slider } from "@/components/ui/slider";
 import { DatePicker } from "@/components/ui/date-picker";
 import { FormFieldConfig } from "@/types";
+import { ControllerRenderProps } from "react-hook-form";
 
-export const FORM_FIELDS: FormFieldConfig<any, any>[] = [
+export const FORM_FIELDS: FormFieldConfig<any>[] = [
   {
     name: "text",
     label: "Text Input",
-    render: (field) => <Input {...field} type="text" placeholder="Enter text" />,
+    render: (field: ControllerRenderProps<any>) => <Input {...field} type="text" placeholder="Enter text" />,
   },
   {
     name: "textarea",
     label: "Textarea",
-    render: (field) => <Textarea {...field} placeholder="Enter details" />,
+    render: (field: ControllerRenderProps<any>) => <Textarea {...field} placeholder="Enter details" />,
   },
   {
     name: "select",
     label: "Select",
-    render: (field) => (
+    render: (field: ControllerRenderProps<any>) => (
       <Select onValueChange={field.onChange} defaultValue={field.value}>
         <SelectTrigger>
           <SelectValue placeholder="Select an option" />
@@ -44,21 +45,21 @@ export const FORM_FIELDS: FormFieldConfig<any, any>[] = [
   {
     name: "checkbox",
     label: "Checkbox",
-    render: (field) => (
+    render: (field: ControllerRenderProps<any>) => (
       <Checkbox checked={field.value} onCheckedChange={field.onChange} />
     ),
   },
   {
     name: "toggle",
     label: "Toggle",
-    render: (field) => (
+    render: (field: ControllerRenderProps<any>) => (
       <Switch checked={field.value} onCheckedChange={field.onChange} />
     ),
   },
   {
     name: "radio",
     label: "Radio Group",
-    render: (field) => (
+    render: (field: ControllerRenderProps<any>) => (
       <RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
         <span className="flex items-center gap-2">
           <RadioGroupItem value="option1" id="option1" />
@@ -74,7 +75,7 @@ export const FORM_FIELDS: FormFieldConfig<any, any>[] = [
   {
     name: "slider",
     label: "Slider",
-    render: (field) => (
+    render: (field: ControllerRenderProps<any>) => (
       <Slider
         defaultValue={[33]}
         max={100}
@@ -87,6 +88,6 @@ export const FORM_FIELDS: FormFieldConfig<any, any>[] = [
   {
     name: "datePicker",
     label: "Date Picker",
-    render: (field) => <DatePicker onSelect={field.onChange} selected={field.value} />,
+    render: (field: ControllerRenderProps<any>) => <DatePicker onSelect={field.onChange} selected={field.value} />,
   },
 ];
