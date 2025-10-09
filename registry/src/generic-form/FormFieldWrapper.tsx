@@ -15,14 +15,20 @@ function FormFieldWrapper<T extends FieldValues>({
   formField,
   control,
 }: FormFieldWrapperProps<T>): JSX.Element {
-  const { name, label, render: renderField, width = "full", description } = formField;
+  const {
+    name,
+    label,
+    render: renderField,
+    width = 'full',
+    description,
+  } = formField;
 
   return (
     <FormField
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className={cn(width === "half" ? "w-1/2" : "w-full")}>
+        <FormItem className={cn(width === 'half' ? 'w-1/2' : 'w-full')}>
           <FormLabel>{label}</FormLabel>
           <FormControl>{renderField(field)}</FormControl>
           {description && <FormDescription>{description}</FormDescription>}

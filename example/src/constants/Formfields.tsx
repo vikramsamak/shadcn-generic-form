@@ -20,12 +20,16 @@ export const FORM_FIELDS: FormFieldConfig<any>[] = [
   {
     name: "text",
     label: "Text Input",
-    render: (field: ControllerRenderProps<any>) => <Input {...field} type="text" placeholder="Enter text" />,
+    render: (field: ControllerRenderProps<any>) => (
+      <Input {...field} type="text" placeholder="Enter text" />
+    ),
   },
   {
     name: "textarea",
     label: "Textarea",
-    render: (field: ControllerRenderProps<any>) => <Textarea {...field} placeholder="Enter details" />,
+    render: (field: ControllerRenderProps<any>) => (
+      <Textarea {...field} placeholder="Enter details" />
+    ),
   },
   {
     name: "select",
@@ -88,6 +92,8 @@ export const FORM_FIELDS: FormFieldConfig<any>[] = [
   {
     name: "datePicker",
     label: "Date Picker",
-    render: (field: ControllerRenderProps<any>) => <DatePicker onSelect={field.onChange} selected={field.value} />,
+    render: (field: ControllerRenderProps<any>) => (
+      <DatePicker onSelect={field.onChange} selected={field.value} />
+    ),
   },
 ];
