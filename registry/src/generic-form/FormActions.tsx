@@ -18,6 +18,8 @@ function FormActions({
       <Button
         type="submit"
         disabled={disabled}
+        aria-label="Submit"
+        aria-disabled={disabled}
         className={cn(submitButtonWidth, submitBtnClassName)}
       >
         {submitButtonText}
@@ -26,6 +28,9 @@ function FormActions({
         <Button
           type="button"
           onClick={onCancel}
+          aria-label="Cancel"
+          aria-disabled={disabled}
+          disabled={disabled}
           className={cn('w-1/2', cancelBtnClassName)}
         >
           {cancelButtonText}
