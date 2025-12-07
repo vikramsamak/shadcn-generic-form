@@ -1,4 +1,4 @@
-import { FormActionsProps } from '@/types';
+import { FormActionsProps } from '@/types/FormActions.types';
 import { JSX } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';

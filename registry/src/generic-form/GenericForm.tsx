@@ -1,4 +1,4 @@
-import { GenericFormProps } from '@/types';
+import { GenericFormProps } from '@/types/GenericForm.types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z, ZodObject } from 'zod';

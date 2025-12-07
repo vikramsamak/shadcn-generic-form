@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { useForm } from 'react-hook-form';
 import FormFieldWrapper from '../generic-form/FormFieldWrapper';
 import { Form } from '@/components/ui/form';
-import { FormFieldConfig } from '@/types';
+import { FormFieldConfig } from '@/types/FormField.types';
 
 describe('FormFieldWrapper', () => {
   const TestComponent = ({ formField }: { formField: FormFieldConfig<any> }) => {
