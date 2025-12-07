@@ -101,15 +101,9 @@ describe('GenericForm', () => {
   });
 
   it('should handle conditional fields', async () => {
-    const conditionalFormConfig = {
-      ...formConfig,
-      validationSchema,
-      formFields,
-    };
-
     const actions = { onSubmit: vi.fn() };
     const { rerender } = render(
-      <GenericForm formConfig={conditionalFormConfig} actions={actions} />
+      <GenericForm formConfig={formConfig} actions={actions} />
     );
 
     expect(screen.queryByLabelText('Extra Field')).not.toBeInTheDocument();
@@ -118,9 +112,7 @@ describe('GenericForm', () => {
       target: { value: 'John Doe' },
     });
 
-    rerender(
-      <GenericForm formConfig={conditionalFormConfig} actions={actions} />
-    );
+    rerender(<GenericForm formConfig={formConfig} actions={actions} />);
 
     await vi.waitFor(() => {
       expect(screen.getByLabelText('Extra Field')).toBeInTheDocument();
