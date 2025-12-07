@@ -1,22 +1,48 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { z } from 'zod';
-import GenericForm from '../generic-form/GenericForm';
 import { FormFieldConfig } from '../types/FormField.types';
+import GenericForm from '../generic-form/GenericForm';
 
 describe('GenericForm', () => {
   const validationSchema = z.object({
     name: z.string().min(1, 'Name is required'),
     email: z.string().email('Invalid email'),
     age: z.number().min(18, 'You must be at least 18'),
+    extra: z.string().optional(),
   });
 
   type FormValues = z.infer<typeof validationSchema>;
 
   const formFields: FormFieldConfig<FormValues>[] = [
-    { name: 'name', label: 'Name', render: (field) => <input {...field} /> },
-    { name: 'email', label: 'Email', render: (field) => <input {...field} /> },
-    { name: 'age', label: 'Age', render: (field) => <input type="number" {...field} onChange={(e) => field.onChange(e.target.valueAsNumber)} /> },
+    {
+      name: 'name',
+      label: 'Name',
+      render: (field) => <input {...field} />,
+    },
+    {
+      name: 'email',
+      label: 'Email',
+      render: (field) => <input {...field} />,
+    },
+    {
+      name: 'age',
+      label: 'Age',
+      render: (field) => (
+        <input
+          type="number"
+          {...field}
+          onChange={(e) => field.onChange(e.target.valueAsNumber)}
+        />
+      ),
+    },
+    {
+      name: 'extra' as const,
+      label: 'Extra Field',
+      condition: (values: z.infer<typeof validationSchema>) =>
+        values.name === 'John Doe',
+      render: (field) => <input {...field} />,
+    },
   ];
 
   const formConfig = {
@@ -40,14 +66,21 @@ describe('GenericForm', () => {
     const actions = { onSubmit };
     render(<GenericForm formConfig={formConfig} actions={actions} />);
 
-    fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'John Doe' } });
-    fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'john.doe@example.com' } });
+    fireEvent.change(screen.getByLabelText('Name'), {
+      target: { value: 'John Doe' },
+    });
+    fireEvent.change(screen.getByLabelText('Email'), {
+      target: { value: 'john.doe@example.com' },
+    });
     fireEvent.change(screen.getByLabelText('Age'), { target: { value: '30' } });
 
     fireEvent.click(screen.getByRole('button', { name: /submit/i }));
 
     await vi.waitFor(() => {
-      expect(onSubmit).toHaveBeenCalledWith({ name: 'John Doe', email: 'john.doe@example.com', age: 30 }, expect.anything());
+      expect(onSubmit).toHaveBeenCalledWith(
+        { name: 'John Doe', email: 'john.doe@example.com', age: 30 },
+        expect.anything()
+      );
     });
   });
 
@@ -68,32 +101,26 @@ describe('GenericForm', () => {
   });
 
   it('should handle conditional fields', async () => {
-    const conditionalSchema = validationSchema.extend({
-      extra: z.string().optional(),
-    });
-
     const conditionalFormConfig = {
       ...formConfig,
-      validationSchema: conditionalSchema,
-      formFields: [
-        ...(formFields as any),
-        {
-          name: 'extra' as const,
-          label: 'Extra Field',
-          condition: (values: z.infer<typeof conditionalSchema>) => values.name === 'John Doe',
-          render: (field: z.infer<typeof conditionalSchema>) => <input {...field} />
-        },
-      ],
+      validationSchema,
+      formFields,
     };
 
     const actions = { onSubmit: vi.fn() };
-    const { rerender } = render(<GenericForm formConfig={conditionalFormConfig} actions={actions} />);
+    const { rerender } = render(
+      <GenericForm formConfig={conditionalFormConfig} actions={actions} />
+    );
 
     expect(screen.queryByLabelText('Extra Field')).not.toBeInTheDocument();
 
-    fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'John Doe' } });
+    fireEvent.change(screen.getByLabelText('Name'), {
+      target: { value: 'John Doe' },
+    });
 
-    rerender(<GenericForm formConfig={conditionalFormConfig} actions={actions} />);
+    rerender(
+      <GenericForm formConfig={conditionalFormConfig} actions={actions} />
+    );
 
     await vi.waitFor(() => {
       expect(screen.getByLabelText('Extra Field')).toBeInTheDocument();
@@ -114,7 +141,11 @@ describe('GenericForm', () => {
   it('should apply grid layout', () => {
     const actions = { onSubmit: vi.fn() };
     const { container } = render(
-      <GenericForm formConfig={formConfig} actions={actions} layoutSettings={{ layout: 'grid', columns: 3 }} />
+      <GenericForm
+        formConfig={formConfig}
+        actions={actions}
+        layoutSettings={{ layout: 'grid', columns: 3 }}
+      />
     );
 
     expect(container.firstChild?.firstChild).toHaveClass('grid grid-cols-3');
@@ -122,7 +153,13 @@ describe('GenericForm', () => {
 
   it('should disable the form', () => {
     const actions = { onSubmit: vi.fn() };
-    render(<GenericForm formConfig={formConfig} actions={actions} formSettings={{ disabled: true }} />);
+    render(
+      <GenericForm
+        formConfig={formConfig}
+        actions={actions}
+        formSettings={{ disabled: true }}
+      />
+    );
 
     expect(screen.getByLabelText('Name')).toBeDisabled();
     expect(screen.getByLabelText('Email')).toBeDisabled();
