@@ -6,7 +6,7 @@ import { Form } from '@/components/ui/form';
 import { FormFieldConfig } from '@/types/FormField.types';
 
 describe('FormFieldWrapper', () => {
-  const TestComponent = ({ formField }: { formField: FormFieldConfig<any> }) => {
+  const TestComponent = ({ formField }: { formField: FormFieldConfig<{ name: string }> }) => {
     const form = useForm({ defaultValues: { name: '' } });
     return (
       <Form {...form}>
@@ -17,7 +17,7 @@ describe('FormFieldWrapper', () => {
 
   it('should render the field with a label', () => {
     const formField = {
-      name: 'name',
+      name: 'name' as const,
       label: 'Name',
       render: () => <input />,
     };
@@ -28,7 +28,7 @@ describe('FormFieldWrapper', () => {
 
   it('should render the description', () => {
     const formField = {
-      name: 'name',
+      name: 'name' as const,
       label: 'Name',
       description: 'This is a description',
       render: () => <input />,
@@ -40,7 +40,7 @@ describe('FormFieldWrapper', () => {
 
   it('should apply full width by default', () => {
     const formField = {
-      name: 'name',
+      name: 'name' as const,
       label: 'Name',
       render: () => <input />,
     };
@@ -51,7 +51,7 @@ describe('FormFieldWrapper', () => {
 
   it('should apply half width', () => {
     const formField = {
-      name: 'name',
+      name: 'name' as const,
       label: 'Name',
       width: 'half',
       render: () => <input />,
@@ -64,7 +64,7 @@ describe('FormFieldWrapper', () => {
   it('should call the render prop with the field object', () => {
     const renderField = vi.fn(() => <input />);
     const formField = {
-      name: 'name',
+      name: 'name' as const,
       label: 'Name',
       render: renderField,
     };

@@ -76,12 +76,12 @@ describe('GenericForm', () => {
       ...formConfig,
       validationSchema: conditionalSchema,
       formFields: [
-        ...formFields,
+        ...(formFields as any),
         {
           name: 'extra' as const,
           label: 'Extra Field',
-          condition: (values: any) => values.name === 'John Doe',
-          render: (field: any) => <input {...field} />
+          condition: (values: z.infer<typeof conditionalSchema>) => values.name === 'John Doe',
+          render: (field: z.infer<typeof conditionalSchema>) => <input {...field} />
         },
       ],
     };
