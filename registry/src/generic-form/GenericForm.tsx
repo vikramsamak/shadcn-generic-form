@@ -45,6 +45,7 @@ function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
     resolver: zodResolver(validationSchema),
     defaultValues: defaultValues,
     mode,
+    disabled,
   });
 
   const values = form.watch();
