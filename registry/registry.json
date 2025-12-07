@@ -31,11 +31,6 @@
           "target": "src/components/generic-form/GenericForm.tsx"
         },
         {
-          "path": "src/types/index.ts",
-          "type": "registry:file",
-          "target": "src/types/index.ts"
-        },
-        {
           "path": "src/types/FormActions.types.ts",
           "type": "registry:file",
           "target": "src/types/FormActions.types.ts"
@@ -56,8 +51,16 @@
           "target": "src/types/GenericForm.types.ts"
         }
       ],
-      "dependencies": ["@hookform/resolvers", "zod", "react-hook-form"],
-      "registryDependencies": ["button", "form", "label"]
+      "dependencies": [
+        "@hookform/resolvers",
+        "zod",
+        "react-hook-form"
+      ],
+      "registryDependencies": [
+        "button",
+        "form",
+        "label"
+      ]
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { GenericFormProps } from '@/types';
+import { GenericFormProps } from '@/types/GenericForm.types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z, ZodObject } from 'zod';
@@ -45,6 +45,7 @@ function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
     resolver: zodResolver(validationSchema),
     defaultValues: defaultValues,
     mode,
+    disabled,
   });
 
   const values = form.watch();
