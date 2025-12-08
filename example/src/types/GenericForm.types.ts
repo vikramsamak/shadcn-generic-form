@@ -10,7 +10,7 @@ export interface GenericFormProps<T extends ZodObject<ZodRawShape>> {
   };
 
   formSettings?: {
-    mode?: 'onSubmit' | 'onBlur' | 'onChange' | 'all';
+    mode?: 'onSubmit' | 'onBlur' | 'onChange' | 'onTouched' | 'all';
     disabled?: boolean;
     className?: string;
   };
