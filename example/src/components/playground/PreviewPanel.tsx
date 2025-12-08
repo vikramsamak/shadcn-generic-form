@@ -78,8 +78,8 @@ export default function MyForm() {
                 </div>
             </div>
 
-            <div className="flex-1 overflow-hidden p-6">
-                <div className="bg-background border rounded-lg shadow-sm h-full flex flex-col overflow-hidden">
+            <div className="flex-1 overflow-hidden">
+                <div className="bg-background border shadow-sm h-full flex flex-col overflow-hidden">
                     {activeTab === 'preview' && (
                         <div className="flex-1 p-6 m-0 overflow-auto">
                             <div className="max-w-2xl mx-auto">
