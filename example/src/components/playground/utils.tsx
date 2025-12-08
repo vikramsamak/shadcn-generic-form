@@ -171,8 +171,7 @@ export function buildFormProps(state: PlaygroundState) {
         actions: {
             ...actions,
             onSubmit: (values: any) => console.log('Form Submitted:', values),
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            onCancel: () => console.log('Form Cancelled'),
+            ...(actions.showCancel ? { onCancel: () => console.log('Form Cancelled') } : {}),
         }
     };
 }
