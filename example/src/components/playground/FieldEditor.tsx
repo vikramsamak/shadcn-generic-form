@@ -65,43 +65,45 @@ export default function FieldEditor({
             </div>
 
             <div className="flex-1 flex flex-col min-h-0">
-                <ScrollArea className="flex-1 border-b">
-                    <div className="p-2 space-y-1">
-                        {fields.map((field) => (
-                            <div
-                                key={field.id}
-                                className={cn(
-                                    "flex items-center justify-between p-2 rounded-md cursor-pointer hover:bg-muted/50 transition-colors",
-                                    selectedFieldId === field.id && "bg-muted"
-                                )}
-                                onClick={() => setSelectedFieldId(field.id)}
-                            >
-                                <div className="flex items-center gap-2 overflow-hidden">
-                                    <Settings2 className="h-3 w-3 text-muted-foreground shrink-0" />
-                                    <span className="text-sm font-medium truncate">{field.label}</span>
-                                    <span className="text-xs text-muted-foreground ml-1 font-mono uppercase">[{field.type}]</span>
-                                </div>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="h-6 w-6 text-destructive hover:text-destructive hover:bg-destructive/10"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        onRemoveField(field.id);
-                                        if (selectedFieldId === field.id) setSelectedFieldId(null);
-                                    }}
+                <div className="flex-1 min-h-0 border-b relative">
+                    <ScrollArea className="h-full">
+                        <div className="p-2 space-y-1">
+                            {fields.map((field) => (
+                                <div
+                                    key={field.id}
+                                    className={cn(
+                                        "flex items-center justify-between p-2 rounded-md cursor-pointer hover:bg-muted/50 transition-colors",
+                                        selectedFieldId === field.id && "bg-muted"
+                                    )}
+                                    onClick={() => setSelectedFieldId(field.id)}
                                 >
-                                    <Trash2 className="h-3 w-3" />
-                                </Button>
-                            </div>
-                        ))}
-                        {fields.length === 0 && (
-                            <div className="text-center py-8 text-sm text-muted-foreground">
-                                No fields added. Add one above.
-                            </div>
-                        )}
-                    </div>
-                </ScrollArea>
+                                    <div className="flex items-center gap-2 overflow-hidden">
+                                        <Settings2 className="h-3 w-3 text-muted-foreground shrink-0" />
+                                        <span className="text-sm font-medium truncate">{field.label}</span>
+                                        <span className="text-xs text-muted-foreground ml-1 font-mono uppercase">[{field.type}]</span>
+                                    </div>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-6 w-6 text-destructive hover:text-destructive hover:bg-destructive/10"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onRemoveField(field.id);
+                                            if (selectedFieldId === field.id) setSelectedFieldId(null);
+                                        }}
+                                    >
+                                        <Trash2 className="h-3 w-3" />
+                                    </Button>
+                                </div>
+                            ))}
+                            {fields.length === 0 && (
+                                <div className="text-center py-8 text-sm text-muted-foreground">
+                                    No fields added. Add one above.
+                                </div>
+                            )}
+                        </div>
+                    </ScrollArea>
+                </div>
 
                 {selectedField ? (
                     <ScrollArea className="h-1/2 min-h-[250px] bg-muted/30">
