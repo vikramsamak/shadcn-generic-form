@@ -81,11 +81,11 @@ export default function MyForm() {
             <div className="flex-1 overflow-hidden">
                 <div className="bg-background border shadow-sm h-full flex flex-col overflow-hidden">
                     {activeTab === 'preview' && (
-                        <div className="flex-1 p-6 m-0 overflow-auto">
-                            <div className="max-w-2xl mx-auto">
+                        <ScrollArea className="h-full">
+                            <div className="p-6 max-w-2xl mx-auto">
                                 <GenericForm {...finalProps} />
                             </div>
-                        </div>
+                        </ScrollArea>
                     )}
 
                     {activeTab === 'code' && (
