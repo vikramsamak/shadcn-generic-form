@@ -5,7 +5,10 @@
   "type": "module",
   "description": "Root configuration for generic-form",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "husky": "^9.1.7",

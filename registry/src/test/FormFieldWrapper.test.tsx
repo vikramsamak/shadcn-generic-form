@@ -14,7 +14,7 @@ describe('FormFieldWrapper', () => {
     const form = useForm({ defaultValues: { name: '' } });
     return (
       <Form {...form}>
-        <FormFieldWrapper formField={formField}  />
+        <FormFieldWrapper formField={formField} />
       </Form>
     );
   };
