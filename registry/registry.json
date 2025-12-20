@@ -38,7 +38,7 @@
         {
           "path": "src/generic-form/constants.ts",
           "type": "registry:file",
-          "target": "src/generic-form/constants.ts"
+          "target": "src/components/generic-form/constants.ts"
         },
         {
           "path": "src/types/FormActions.types.ts",
