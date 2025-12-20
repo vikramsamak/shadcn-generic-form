@@ -61,16 +61,8 @@
           "target": "src/types/GenericForm.types.ts"
         }
       ],
-      "dependencies": [
-        "@hookform/resolvers",
-        "zod",
-        "react-hook-form"
-      ],
-      "registryDependencies": [
-        "button",
-        "form",
-        "label"
-      ]
+      "dependencies": ["@hookform/resolvers", "zod", "react-hook-form"],
+      "registryDependencies": ["button", "form", "label"]
     }
   ]
 }

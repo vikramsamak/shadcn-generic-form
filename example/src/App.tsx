@@ -1,9 +1,7 @@
 import Playground from './components/playground/Playground';
 
 function App() {
-  return (
-    <Playground />
-  );
+  return <Playground />;
 }
 
 export default App;
