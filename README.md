@@ -1,4 +1,4 @@
-# ShadCN Generic Form
+# Generic Form
 
 A highly flexible and customizable **Generic Form** component built with **ShadCN**, `react-hook-form`, and `Zod`. This component makes it easy to create dynamic forms with built-in validation, layout flexibility, and full control over form fields.
 
@@ -18,7 +18,7 @@ A highly flexible and customizable **Generic Form** component built with **ShadC
 ## 📦 Installation
 
 ```sh
-npx shadcn@latest add https://shadcn-generic-form.vercel.app/shadcn-generic-form.json
+npx shadcn@latest add https://generic-form.vercel.app/generic-form.json
 ```
 
 ---
@@ -101,8 +101,8 @@ export default function App() {
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/vikramsamak/shadcn-generic-form.git
-   cd shadcn-generic-form
+   git clone https://github.com/vikramsamak/generic-form.git
+   cd generic-form
    ```
 
 2. Install dependencies:
