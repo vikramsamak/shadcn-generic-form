@@ -17,7 +17,7 @@ export default function Playground() {
   return (
     <div className="h-screen w-full flex flex-col">
       <div className="p-4 border-b">
-        <h1 className="text-2xl font-bold">Shadcn Generic Form Playground</h1>
+        <h1 className="text-2xl font-bold">Generic Form Playground</h1>
       </div>
       <div className="flex-1 overflow-hidden">
         <div className="flex flex-col lg:flex-row h-full">
