@@ -7,13 +7,12 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
-import { FieldValues } from 'react-hook-form';
+import { FieldValues, Path } from 'react-hook-form';
 import { FormFieldWrapperProps } from '@/types/FormFieldWrapper.types';
 import { JSX } from 'react';
 
 function FormFieldWrapper<T extends FieldValues>({
   formField,
-  control,
 }: FormFieldWrapperProps<T>): JSX.Element {
   const {
     name,
@@ -24,8 +23,7 @@ function FormFieldWrapper<T extends FieldValues>({
   } = formField;
 
   return (
-    <FormField
-      control={control}
+    <FormField<T, Path<T>>
       name={name}
       render={({ field }) => (
         <FormItem className={cn(width === 'half' ? 'w-1/2' : 'w-full')}>
