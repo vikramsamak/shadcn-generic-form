@@ -2,6 +2,9 @@ import ConfigPanel from './ConfigPanel';
 import FieldEditor from './FieldEditor';
 import PreviewPanel from './PreviewPanel';
 import { usePlayground } from './usePlayground';
+import { Github } from 'lucide-react';
+import { ModeToggle } from '../mode-toggle';
+import { Button } from '../ui/button';
 
 export default function Playground() {
   const {
@@ -16,8 +19,16 @@ export default function Playground() {
 
   return (
     <div className="h-screen w-full flex flex-col">
-      <div className="p-4 border-b">
+      <div className="p-4 border-b flex items-center justify-between">
         <h1 className="text-2xl font-bold">Generic Form Playground</h1>
+        <div className="flex items-center gap-4">
+          <a href="https://github.com/vikramsamak/generic-form" target="_blank">
+            <Button variant="ghost" size="icon" className="rounded-full">
+              <Github />
+            </Button>
+          </a>
+          <ModeToggle />
+        </div>
       </div>
       <div className="flex-1 overflow-hidden">
         <div className="flex flex-col lg:flex-row h-full">
