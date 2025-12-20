@@ -18,7 +18,7 @@ A highly flexible and customizable **Generic Form** component built with **ShadC
 ## 📦 Installation
 
 ```sh
-npx shadcn@latest add https://generic-form.vercel.app/generic-form.json
+npx shadcn@latest add https://shadcn-generic-form.vercel.app/generic-form.json
 ```
 
 ---
