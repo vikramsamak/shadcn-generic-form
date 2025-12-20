@@ -5,23 +5,9 @@ import { z, ZodObject } from 'zod';
 import { Form } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
 import { JSX } from 'react';
-import { GAPS, GRID_COLS } from '@/constants';
+import { getLayoutClassName } from './utils';
 import FormActions from './FormActions';
 import FormFieldWrapper from './FormFieldWrapper';
-
-const getLayoutClassName = (
-  layout: 'grid' | 'flex',
-  columns?: number,
-  gap?: number
-) => {
-  const colClass = GRID_COLS[columns || 2] || 'grid-cols-2';
-  const gapClass = GAPS[gap || 4] || 'gap-4';
-
-  return cn(
-    layout === 'grid' ? 'grid' : 'flex flex-wrap',
-    layout === 'grid' ? `${colClass} ${gapClass}` : gapClass
-  );
-};
 
 function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
   formConfig,

@@ -31,9 +31,14 @@
           "target": "src/components/generic-form/GenericForm.tsx"
         },
         {
-          "path": "src/constants.ts",
+          "path": "src/generic-form/utils.ts",
           "type": "registry:file",
-          "target": "src/constants.ts"
+          "target": "src/components/generic-form/utils.ts"
+        },
+        {
+          "path": "src/generic-form/constants.ts",
+          "type": "registry:file",
+          "target": "src/generic-form/constants.ts"
         },
         {
           "path": "src/types/FormActions.types.ts",
