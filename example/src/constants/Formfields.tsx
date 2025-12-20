@@ -13,7 +13,7 @@ import { Switch } from '@/components/ui/switch';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Slider } from '@/components/ui/slider';
 import { DatePicker } from '@/components/ui/date-picker';
-import { FormFieldConfig } from '@/types';
+import { FormFieldConfig } from '@/types/FormField.types';
 import { ControllerRenderProps } from 'react-hook-form';
 
 export const FORM_FIELDS: FormFieldConfig<any>[] = [
