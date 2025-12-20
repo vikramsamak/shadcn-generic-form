@@ -29,17 +29,19 @@ npx shadcn@latest add https://shadcn-generic-form.vercel.app/shadcn-generic-form
 
 | Prop              | Type                                                                 | Description |
 |------------------|--------------------------------------------------------------------|-------------|
-| `formConfig`     | `{ formFields: FormFieldConfig<z.infer<T>, Event>[]; validationSchema: T; defaultValues: DefaultValues<z.infer<T>>; }` | Configuration for form fields, validation schema, and default values. |
-| `formSettings`   | `{ mode?: 'onSubmit' \| 'onBlur' \| 'onChange' \| 'all'; disabled?: boolean; className?: string; }` | Settings for form behavior and appearance. |
+| `formConfig`     | `{ formFields: FormFieldConfig<z.input<T>>[]; validationSchema: T; defaultValues: DefaultValues<z.input<T>>; }` | Configuration for form fields, validation schema, and default values. |
+| `formSettings`   | `{ mode?: 'onSubmit' \| 'onBlur' \| 'onChange' \| 'onTouched' \| 'all'; disabled?: boolean; className?: string; }` | Settings for form behavior and appearance. |
 | `layoutSettings` | `{ layout?: 'flex' \| 'grid'; columns?: number; gap?: number; }` | Controls the layout structure of the form. |
-| `actions`        | `{ submitButtonText?: string; cancelButtonText?: string; submitBtnClassName?: string; cancelBtnClassName?: string; onSubmit: (values: z.infer<T>) => void; onError?: (errors: Record<string, unknown>) => void; onCancel?: () => void; }` | Event handlers and customization for form actions. |
+| `actions`        | `{ submitButtonText?: string; cancelButtonText?: string; submitBtnClassName?: string; cancelBtnClassName?: string; onSubmit: (values: z.output<T>) => void; onError?: (errors: Record<string, unknown>) => void; onCancel?: () => void; }` | Event handlers and customization for form actions. |
+
+### `FormFieldConfig<T>`
 
 | Prop           | Type                                         | Description |
 |----------------|----------------------------------------------|-------------|
 | `name`         | `Path<T>`                                   | The name of the form field, used for binding with React Hook Form. |
 | `label`        | `string`                                    | The label displayed for the field. |
-| `render`       | `(field: ControllerRenderProps<T>) => React.ReactElement` | A function that returns a React element to render for the field. |
-| `width`        | `'full'`, or `'half'`, or `string`              | Defines the width of the form field. Defaults to `'full'`. |
+| `render`       | `(field: ControllerRenderProps<T, Path<T>>) => React.ReactElement` | A function that returns a React element to render for the field. |
+| `width`        | `'full' \| 'half' \| string`                | Defines the width of the form field. Defaults to `'full'`. |
 | `condition`    | `(values: T) => boolean`                     | A function that determines if the field should be displayed. |
 | `description`  | `string`                                    | Additional description or hint text for the field. |
 
