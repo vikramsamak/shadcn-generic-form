@@ -1,6 +1,6 @@
 import { GenericFormProps } from '@/types/GenericForm.types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useForm, DefaultValues } from 'react-hook-form';
 import { z, ZodObject } from 'zod';
 import { Form } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
@@ -28,11 +28,9 @@ function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
     submitBtnClassName,
   } = actions;
 
-  type FormSchema = z.infer<T>;
-
-  const form = useForm<FormSchema>({
+  const form = useForm<z.input<T>, any, z.output<T>>({
     resolver: zodResolver(validationSchema),
-    defaultValues: defaultValues,
+    defaultValues: defaultValues as DefaultValues<z.input<T>>,
     mode,
     disabled,
   });
@@ -51,10 +49,9 @@ function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
               return null;
 
             return (
-              <FormFieldWrapper<FormSchema>
+              <FormFieldWrapper<z.input<T>>
                 key={formField.name}
                 formField={formField}
-                control={form.control}
               />
             );
           })}

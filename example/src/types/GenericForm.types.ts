@@ -4,9 +4,9 @@ import { FormFieldConfig } from './FormField.types';
 
 export interface GenericFormProps<T extends ZodObject<ZodRawShape>> {
   formConfig: {
-    formFields: FormFieldConfig<z.infer<T>>[];
+    formFields: FormFieldConfig<z.input<T>>[];
     validationSchema: T;
-    defaultValues: DefaultValues<z.infer<T>>;
+    defaultValues: DefaultValues<z.input<T>>;
   };
 
   formSettings?: {
@@ -26,7 +26,7 @@ export interface GenericFormProps<T extends ZodObject<ZodRawShape>> {
     cancelButtonText?: string;
     submitBtnClassName?: string;
     cancelBtnClassName?: string;
-    onSubmit: (values: z.infer<T>) => void;
+    onSubmit: (values: z.output<T>) => void;
     onError?: (errors: Record<string, unknown>) => void;
     onCancel?: () => void;
   };
