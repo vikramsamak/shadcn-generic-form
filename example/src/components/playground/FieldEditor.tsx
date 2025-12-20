@@ -85,7 +85,7 @@ export default function FieldEditor({
                                     <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="h-6 w-6 text-destructive hover:text-destructive hover:bg-destructive/10"
+                                        className="h-6 w-6 text-destructive hover:text-destructive hover:bg-destructive/10 hover:scale-110 transition-all duration-200 ease-in-out cursor-pointer"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             onRemoveField(field.id);
