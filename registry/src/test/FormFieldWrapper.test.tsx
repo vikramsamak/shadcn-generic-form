@@ -6,11 +6,15 @@ import { Form } from '@/components/ui/form';
 import { FormFieldConfig } from '@/types/FormField.types';
 
 describe('FormFieldWrapper', () => {
-  const TestComponent = ({ formField }: { formField: FormFieldConfig<{ name: string }> }) => {
+  const TestComponent = ({
+    formField,
+  }: {
+    formField: FormFieldConfig<{ name: string }>;
+  }) => {
     const form = useForm({ defaultValues: { name: '' } });
     return (
       <Form {...form}>
-        <FormFieldWrapper formField={formField} control={form.control} />
+        <FormFieldWrapper formField={formField}  />
       </Form>
     );
   };
@@ -70,6 +74,8 @@ describe('FormFieldWrapper', () => {
     };
     render(<TestComponent formField={formField} />);
 
-    expect(renderField).toHaveBeenCalledWith(expect.objectContaining({ name: 'name' }));
+    expect(renderField).toHaveBeenCalledWith(
+      expect.objectContaining({ name: 'name' })
+    );
   });
 });

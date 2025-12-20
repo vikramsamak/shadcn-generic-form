@@ -7,11 +7,19 @@ describe('FormActions', () => {
     render(<FormActions submitButtonText="Submit" />);
 
     expect(screen.getByRole('button', { name: /submit/i })).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: /cancel/i })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /cancel/i })
+    ).not.toBeInTheDocument();
   });
 
   it('should render both submit and cancel buttons', () => {
-    render(<FormActions submitButtonText="Submit" cancelButtonText="Cancel" onCancel={() => {}} />);
+    render(
+      <FormActions
+        submitButtonText="Submit"
+        cancelButtonText="Cancel"
+        onCancel={() => {}}
+      />
+    );
 
     expect(screen.getByRole('button', { name: /submit/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
@@ -19,7 +27,13 @@ describe('FormActions', () => {
 
   it('should call onCancel when the cancel button is clicked', () => {
     const onCancel = vi.fn();
-    render(<FormActions submitButtonText="Submit" cancelButtonText="Cancel" onCancel={onCancel} />);
+    render(
+      <FormActions
+        submitButtonText="Submit"
+        cancelButtonText="Cancel"
+        onCancel={onCancel}
+      />
+    );
 
     fireEvent.click(screen.getByRole('button', { name: /cancel/i }));
 
@@ -51,7 +65,11 @@ describe('FormActions', () => {
       />
     );
 
-    expect(screen.getByRole('button', { name: /submit/i })).toHaveClass('custom-submit');
-    expect(screen.getByRole('button', { name: /cancel/i })).toHaveClass('custom-cancel');
+    expect(screen.getByRole('button', { name: /submit/i })).toHaveClass(
+      'custom-submit'
+    );
+    expect(screen.getByRole('button', { name: /cancel/i })).toHaveClass(
+      'custom-cancel'
+    );
   });
 });
