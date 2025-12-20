@@ -1,0 +1,33 @@
+{
+  "name": "generic-form-root",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Root configuration for generic-form",
+  "scripts": {
+    "prepare": "husky",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.1",
+    "eslint": "^9.39.2",
+    "prettier": "^3.7.4",
+    "@eslint/js": "^9.39.2",
+    "typescript-eslint": "^8.50.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.26",
+    "globals": "^16.5.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+}
