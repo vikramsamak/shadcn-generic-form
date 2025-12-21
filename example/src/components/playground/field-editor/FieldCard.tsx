@@ -9,22 +9,16 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { PlaygroundField } from '../types';
 import { FIELD_TYPES } from './constants';
+import { usePlaygroundStore } from '../store';
 
 interface FieldCardProps {
   field: PlaygroundField;
   isSelected: boolean;
-  onSelect: (id: string) => void;
-  onDuplicate: (id: string) => void;
-  onRemove: (id: string) => void;
+  onSelect: () => void;
 }
 
-export function FieldCard({
-  field,
-  isSelected,
-  onSelect,
-  onDuplicate,
-  onRemove,
-}: FieldCardProps) {
+export function FieldCard({ field, isSelected, onSelect }: FieldCardProps) {
+  const { duplicateField, removeField } = usePlaygroundStore();
   const fieldTypeInfo = FIELD_TYPES.find((f) => f.type === field.type);
   const Icon = fieldTypeInfo ? fieldTypeInfo.icon : Type;
 
@@ -36,7 +30,7 @@ export function FieldCard({
           ? 'border-primary bg-primary/5 shadow-sm'
           : 'border-border hover:border-primary/30 hover:bg-muted/30'
       )}
-      onClick={() => onSelect(field.id)}
+      onClick={onSelect}
     >
       <div className="flex items-center gap-3 overflow-hidden">
         <div
@@ -75,17 +69,30 @@ export function FieldCard({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => onSelect(field.id)}>
+            <DropdownMenuItem
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelect();
+              }}
+            >
               <Edit2 className="mr-2 h-4 w-4" />
               Edit Properties
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => onDuplicate(field.id)}>
+            <DropdownMenuItem
+              onClick={(e) => {
+                e.stopPropagation();
+                duplicateField(field.id);
+              }}
+            >
               <Copy className="mr-2 h-4 w-4" />
               Duplicate
             </DropdownMenuItem>
             <DropdownMenuItem
               className="text-destructive font-medium"
-              onClick={() => onRemove(field.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                removeField(field.id);
+              }}
             >
               <Trash2 className="mr-2 h-4 w-4" />
               Delete

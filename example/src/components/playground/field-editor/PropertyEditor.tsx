@@ -6,31 +6,20 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import { PlaygroundField } from '../types';
 import { OptionsEditor } from './OptionsEditor';
+import { usePlaygroundStore } from '../store';
 
-interface PropertyEditorProps {
-  selectedField: PlaygroundField | undefined;
-  showProperties: boolean;
-  onUpdateField: (id: string, updates: Partial<PlaygroundField>) => void;
-  onAddOption: () => void;
-  onUpdateOption: (
-    index: number,
-    updates: { label: string; value: string }
-  ) => void;
-  onRemoveOption: (index: number) => void;
-  onBack: () => void;
-}
+export function PropertyEditor() {
+  const {
+    fields,
+    selectedFieldId,
+    showProperties,
+    updateField,
+    setShowProperties,
+  } = usePlaygroundStore();
 
-export function PropertyEditor({
-  selectedField,
-  showProperties,
-  onUpdateField,
-  onAddOption,
-  onUpdateOption,
-  onRemoveOption,
-  onBack,
-}: PropertyEditorProps) {
+  const selectedField = fields.find((f) => f.id === selectedFieldId);
+
   return (
     <div
       className={cn(
@@ -44,7 +33,7 @@ export function PropertyEditor({
             <Button
               variant="ghost"
               size="icon"
-              onClick={onBack}
+              onClick={() => setShowProperties(false)}
               className="h-8 w-8 shrink-0"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -73,7 +62,7 @@ export function PropertyEditor({
                       <Input
                         value={selectedField.label}
                         onChange={(e) =>
-                          onUpdateField(selectedField.id, {
+                          updateField(selectedField.id, {
                             label: e.target.value,
                           })
                         }
@@ -85,7 +74,7 @@ export function PropertyEditor({
                       <Input
                         value={selectedField.name}
                         onChange={(e) =>
-                          onUpdateField(selectedField.id, {
+                          updateField(selectedField.id, {
                             name: e.target.value,
                           })
                         }
@@ -101,7 +90,7 @@ export function PropertyEditor({
                       <Input
                         value={selectedField.placeholder || ''}
                         onChange={(e) =>
-                          onUpdateField(selectedField.id, {
+                          updateField(selectedField.id, {
                             placeholder: e.target.value,
                           })
                         }
@@ -128,7 +117,7 @@ export function PropertyEditor({
                     <Switch
                       checked={selectedField.required}
                       onCheckedChange={(checked) =>
-                        onUpdateField(selectedField.id, { required: checked })
+                        updateField(selectedField.id, { required: checked })
                       }
                     />
                   </div>
@@ -138,12 +127,7 @@ export function PropertyEditor({
                 {['select', 'radio'].includes(selectedField.type) && (
                   <>
                     <Separator className="opacity-50" />
-                    <OptionsEditor
-                      options={selectedField.options || []}
-                      onAdd={onAddOption}
-                      onUpdate={onUpdateOption}
-                      onRemove={onRemoveOption}
-                    />
+                    <OptionsEditor />
                   </>
                 )}
               </div>

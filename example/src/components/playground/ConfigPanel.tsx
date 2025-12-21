@@ -1,9 +1,6 @@
-import { LayoutSettings, FormSettings, FormActionsSettings } from './types';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Slider } from '@/components/ui/slider';
-import { Switch } from '@/components/ui/switch';
 import {
   Select,
   SelectContent,
@@ -11,28 +8,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
+import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { usePlaygroundStore } from './store';
 
-interface ConfigPanelProps {
-  layoutSettings: LayoutSettings;
-  formSettings: FormSettings;
-  actions: FormActionsSettings;
-  onUpdateLayout: (settings: Partial<LayoutSettings>) => void;
-  onUpdateForm: (settings: Partial<FormSettings>) => void;
-  onUpdateActions: (settings: Partial<FormActionsSettings>) => void;
-}
+export default function ConfigPanel() {
+  const {
+    layoutSettings,
+    formSettings,
+    actions,
+    updateLayoutSettings,
+    updateFormSettings,
+    updateActions,
+  } = usePlaygroundStore();
 
-export default function ConfigPanel({
-  layoutSettings,
-  formSettings,
-  actions,
-  onUpdateLayout,
-  onUpdateForm,
-  onUpdateActions,
-}: ConfigPanelProps) {
   return (
-    <div className="flex flex-col h-full bg-background">
-      <div className="p-4 border-b shrink-0 flex items-center h-14 bg-background/50">
+    <div className="flex flex-col h-full bg-background border-r">
+      <div className="p-4 border-b shrink-0 h-14 flex items-center bg-background/50">
         <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
           Configuration
         </h2>
@@ -40,144 +33,158 @@ export default function ConfigPanel({
 
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full">
-          <div className="p-4 space-y-6">
+          <div className="p-4 space-y-8 pb-10">
             {/* Layout Settings */}
             <div className="space-y-4">
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-2">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">
                 Layout
               </h3>
-
-              <div className="space-y-2">
-                <Label>Type</Label>
+              <div className="space-y-3">
+                <Label className="text-xs">Form Layout</Label>
                 <RadioGroup
                   value={layoutSettings.layout}
-                  onValueChange={(val) =>
-                    onUpdateLayout({ layout: val as 'grid' | 'flex' })
+                  onValueChange={(val: 'grid' | 'flex') =>
+                    updateLayoutSettings({ layout: val })
                   }
                   className="flex gap-4"
                 >
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="grid" id="layout-grid" />
-                    <Label htmlFor="layout-grid">Grid</Label>
+                    <RadioGroupItem value="grid" id="grid" />
+                    <Label htmlFor="grid" className="font-normal text-xs">
+                      Grid
+                    </Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="flex" id="layout-flex" />
-                    <Label htmlFor="layout-flex">Flex</Label>
+                    <RadioGroupItem value="flex" id="flex" />
+                    <Label htmlFor="flex" className="font-normal text-xs">
+                      Flex
+                    </Label>
                   </div>
                 </RadioGroup>
               </div>
 
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <Label>Columns (Grid only)</Label>
-                  <span className="text-xs text-muted-foreground">
-                    {layoutSettings.columns}
-                  </span>
+              {layoutSettings.layout === 'grid' && (
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <Label className="text-xs">Columns</Label>
+                    <span className="text-[10px] font-mono text-muted-foreground">
+                      {layoutSettings.columns}
+                    </span>
+                  </div>
+                  <Slider
+                    value={[layoutSettings.columns]}
+                    onValueChange={([val]) =>
+                      updateLayoutSettings({ columns: val })
+                    }
+                    min={1}
+                    max={4}
+                    step={1}
+                  />
                 </div>
-                <Slider
-                  value={[layoutSettings.columns]}
-                  min={1}
-                  max={4}
-                  step={1}
-                  onValueChange={(val) => onUpdateLayout({ columns: val[0] })}
-                  disabled={layoutSettings.layout !== 'grid'}
-                />
-              </div>
+              )}
 
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <Label>Gap</Label>
-                  <span className="text-xs text-muted-foreground">
-                    {layoutSettings.gap}
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <Label className="text-xs">Gap (px)</Label>
+                  <span className="text-[10px] font-mono text-muted-foreground">
+                    {layoutSettings.gap * 4}px
                   </span>
                 </div>
                 <Slider
                   value={[layoutSettings.gap]}
+                  onValueChange={([val]) => updateLayoutSettings({ gap: val })}
                   min={0}
-                  max={16}
-                  step={2}
-                  onValueChange={(val) => onUpdateLayout({ gap: val[0] })}
+                  max={12}
+                  step={1}
                 />
               </div>
             </div>
 
+            <div className="h-px bg-border/50" />
+
             {/* Form Settings */}
             <div className="space-y-4">
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-2">
-                Form
+              <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">
+                Behavior
               </h3>
-
-              <div className="space-y-2">
-                <Label>Validation Mode</Label>
+              <div className="space-y-3">
+                <Label className="text-xs">Validation Mode</Label>
                 <Select
                   value={formSettings.mode}
-                  onValueChange={(val) =>
-                    onUpdateForm({
-                      mode: val as FormSettings['mode'],
-                    })
+                  onValueChange={(val: any) =>
+                    updateFormSettings({ mode: val })
                   }
                 >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select mode" />
+                  <SelectTrigger className="h-9">
+                    <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="onChange">onChange</SelectItem>
-                    <SelectItem value="onBlur">onBlur</SelectItem>
-                    <SelectItem value="onSubmit">onSubmit</SelectItem>
-                    <SelectItem value="onTouched">onTouched</SelectItem>
-                    <SelectItem value="all">all</SelectItem>
+                    <SelectItem value="onChange">On Change</SelectItem>
+                    <SelectItem value="onBlur">On Blur</SelectItem>
+                    <SelectItem value="onSubmit">On Submit</SelectItem>
+                    <SelectItem value="all">All</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="flex items-center justify-between">
-                <Label htmlFor="disabled-form">Disabled</Label>
+                <div className="space-y-0.5">
+                  <Label className="text-xs">Disabled State</Label>
+                  <p className="text-[10px] text-muted-foreground">
+                    Disable entire form
+                  </p>
+                </div>
                 <Switch
-                  id="disabled-form"
                   checked={formSettings.disabled}
                   onCheckedChange={(checked) =>
-                    onUpdateForm({ disabled: checked })
+                    updateFormSettings({ disabled: checked })
                   }
                 />
               </div>
             </div>
 
-            {/* Actions Settings */}
-            <div className="space-y-4">
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-2">
-                Actions
-              </h3>
+            <div className="h-px bg-border/50" />
 
-              <div className="space-y-2">
-                <Label>Submit Button Text</Label>
+            {/* Action Settings */}
+            <div className="space-y-4">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">
+                Form Actions
+              </h3>
+              <div className="space-y-3">
+                <Label className="text-xs">Submit Button Text</Label>
                 <Input
                   value={actions.submitButtonText}
                   onChange={(e) =>
-                    onUpdateActions({ submitButtonText: e.target.value })
+                    updateActions({ submitButtonText: e.target.value })
                   }
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label>Cancel Button Text</Label>
-                <Input
-                  value={actions.cancelButtonText}
-                  onChange={(e) =>
-                    onUpdateActions({ cancelButtonText: e.target.value })
-                  }
+                  className="h-9"
                 />
               </div>
 
               <div className="flex items-center justify-between">
-                <Label htmlFor="show-cancel">Show Cancel Button</Label>
+                <div className="space-y-0.5">
+                  <Label className="text-xs">Show Cancel Button</Label>
+                </div>
                 <Switch
-                  id="show-cancel"
                   checked={actions.showCancel}
                   onCheckedChange={(checked) =>
-                    onUpdateActions({ showCancel: checked })
+                    updateActions({ showCancel: checked })
                   }
                 />
               </div>
+
+              {actions.showCancel && (
+                <div className="space-y-3">
+                  <Label className="text-xs">Cancel Button Text</Label>
+                  <Input
+                    value={actions.cancelButtonText}
+                    onChange={(e) =>
+                      updateActions({ cancelButtonText: e.target.value })
+                    }
+                    className="h-9"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </ScrollArea>

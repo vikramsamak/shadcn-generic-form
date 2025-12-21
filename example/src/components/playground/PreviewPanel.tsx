@@ -1,13 +1,10 @@
-import { PlaygroundState } from './types';
 import { buildFormProps } from './utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { usePlaygroundStore } from './store';
 import GenericForm from '@/components/generic-form/GenericForm';
 
-interface PreviewPanelProps {
-  state: PlaygroundState;
-}
-
-export default function PreviewPanel({ state }: PreviewPanelProps) {
+export default function PreviewPanel() {
+  const state = usePlaygroundStore();
   const formProps = buildFormProps(state);
 
   // Intercept onSubmit to show values in console

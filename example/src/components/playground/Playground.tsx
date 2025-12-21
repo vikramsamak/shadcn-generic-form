@@ -1,49 +1,14 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ConfigPanel from './ConfigPanel';
 import FieldEditor from './FieldEditor';
 import PreviewPanel from './PreviewPanel';
-import { usePlayground } from './usePlayground';
-import { Github, Settings, FileJson, Eye } from 'lucide-react';
 import { ModeToggle } from '../mode-toggle';
 import { Button } from '../ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { Github } from 'lucide-react';
 
 export default function Playground() {
-  const {
-    state,
-    updateLayoutSettings,
-    updateFormSettings,
-    updateActions,
-    addField,
-    updateField,
-    removeField,
-    duplicateField,
-  } = usePlayground();
-
-  const configContent = (
-    <ConfigPanel
-      layoutSettings={state.layoutSettings}
-      formSettings={state.formSettings}
-      actions={state.actions}
-      onUpdateLayout={updateLayoutSettings}
-      onUpdateForm={updateFormSettings}
-      onUpdateActions={updateActions}
-    />
-  );
-
-  const editorContent = (
-    <FieldEditor
-      fields={state.fields}
-      onAddField={addField}
-      onUpdateField={updateField}
-      onRemoveField={removeField}
-      onDuplicateField={duplicateField}
-    />
-  );
-
-  const previewContent = <PreviewPanel state={state} />;
-
   return (
-    <div className="h-[100dvh] w-full flex flex-col bg-background">
+    <div className="h-screen w-full flex flex-col bg-background">
       {/* Header */}
       <div className="p-4 border-b flex items-center justify-between shrink-0 h-16">
         <h1 className="text-xl lg:text-2xl font-bold truncate">
@@ -66,52 +31,56 @@ export default function Playground() {
       <div className="flex-1 overflow-hidden">
         {/* Desktop Layout (lg+) */}
         <div className="hidden lg:flex h-full">
-          <div className="w-[30%] h-full border-r overflow-hidden">
-            {configContent}
+          <div className="w-1/4 min-w-[300px] h-full overflow-hidden">
+            <ConfigPanel />
           </div>
-          <div className="w-[30%] h-full border-r overflow-hidden">
-            {editorContent}
+          <div className="w-1/4 min-w-[350px] h-full overflow-hidden">
+            <FieldEditor />
           </div>
-          <div className="flex-1 h-full overflow-hidden">{previewContent}</div>
+          <div className="flex-1 h-full overflow-hidden bg-muted/5">
+            <PreviewPanel />
+          </div>
         </div>
 
         {/* Mobile Layout (Default, hidden on lg) */}
         <div className="lg:hidden h-full flex flex-col">
           <Tabs defaultValue="preview" className="flex-1 flex flex-col min-h-0">
-            <div className="flex-1 overflow-hidden">
-              <TabsContent value="config" className="h-full m-0 outline-none">
-                {configContent}
-              </TabsContent>
-              <TabsContent value="fields" className="h-full m-0 outline-none">
-                {editorContent}
-              </TabsContent>
-              <TabsContent
-                value="preview"
-                className="h-full m-0 outline-none p-0"
-              >
-                {previewContent}
-              </TabsContent>
-            </div>
-
-            <div className="p-2 border-t bg-background shrink-0">
-              <TabsList className="grid w-full grid-cols-3 h-12">
-                <TabsTrigger value="config" className="flex items-center gap-2">
-                  <Settings className="h-4 w-4" />
-                  <span className="text-xs">Config</span>
+            <div className="border-b bg-background px-4">
+              <TabsList className="h-12 w-full justify-start bg-transparent p-0 gap-6">
+                <TabsTrigger
+                  value="config"
+                  className="h-full rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-0 text-xs font-bold uppercase tracking-wider"
+                >
+                  Config
                 </TabsTrigger>
-
-                <TabsTrigger value="fields" className="flex items-center gap-2">
-                  <FileJson className="h-4 w-4" />
-                  <span className="text-xs">Fields</span>
+                <TabsTrigger
+                  value="fields"
+                  className="h-full rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-0 text-xs font-bold uppercase tracking-wider"
+                >
+                  Fields
                 </TabsTrigger>
                 <TabsTrigger
                   value="preview"
-                  className="flex items-center gap-2"
+                  className="h-full rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-0 text-xs font-bold uppercase tracking-wider"
                 >
-                  <Eye className="h-4 w-4" />
-                  <span className="text-xs">Preview</span>
+                  Preview
                 </TabsTrigger>
               </TabsList>
+            </div>
+
+            <div className="flex-1 min-h-0 overflow-hidden">
+              <TabsContent value="config" className="h-full m-0 p-0">
+                <ConfigPanel />
+              </TabsContent>
+              <TabsContent value="fields" className="h-full m-0 p-0">
+                <FieldEditor />
+              </TabsContent>
+              <TabsContent
+                value="preview"
+                className="h-full m-0 p-0 bg-muted/5"
+              >
+                <PreviewPanel />
+              </TabsContent>
             </div>
           </Tabs>
         </div>
