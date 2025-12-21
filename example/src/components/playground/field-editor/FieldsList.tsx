@@ -12,29 +12,18 @@ import { cn } from '@/lib/utils';
 import { PlaygroundField } from '../types';
 import { FIELD_TYPES } from './constants';
 import { FieldCard } from './FieldCard';
-import { useState } from 'react';
+import { usePlaygroundStore } from '../store';
 
-interface FieldsListProps {
-  fields: PlaygroundField[];
-  selectedFieldId: string | null;
-  showProperties: boolean;
-  onAddField: (type: PlaygroundField['type']) => void;
-  onSelectField: (id: string) => void;
-  onDuplicateField: (id: string) => void;
-  onRemoveField: (id: string) => void;
-}
-
-export function FieldsList({
-  fields,
-  selectedFieldId,
-  showProperties,
-  onAddField,
-  onSelectField,
-  onDuplicateField,
-  onRemoveField,
-}: FieldsListProps) {
-  const [newFieldType, setNewFieldType] =
-    useState<PlaygroundField['type']>('text');
+export function FieldsList() {
+  const {
+    fields,
+    selectedFieldId,
+    showProperties,
+    newFieldType,
+    addField,
+    selectField,
+    setNewFieldType,
+  } = usePlaygroundStore();
 
   return (
     <div
@@ -72,7 +61,7 @@ export function FieldsList({
             </SelectContent>
           </Select>
           <Button
-            onClick={() => onAddField(newFieldType)}
+            onClick={() => addField(newFieldType)}
             size="icon"
             className="h-9 w-9"
           >
@@ -89,9 +78,7 @@ export function FieldsList({
                 key={field.id}
                 field={field}
                 isSelected={selectedFieldId === field.id}
-                onSelect={onSelectField}
-                onDuplicate={onDuplicateField}
-                onRemove={onRemoveField}
+                onSelect={() => selectField(field.id)}
               />
             ))}
             {fields.length === 0 && (
