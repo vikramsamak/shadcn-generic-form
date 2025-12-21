@@ -6,16 +6,19 @@ A highly flexible and customizable **Generic Form** component built with **ShadC
 
 ## ✨ Features
 
-- **Dynamic Form Rendering** – Define form fields with configuration.
-- **Validation with Zod** – Schema-based validation for robust form handling.
-- **Fully Customizable UI** – Supports `flex` and `grid` layouts.
-- **Adjustable Field Widths** – Configure widths for each field (`full`, `half`, custom).
-- **Flexible Event Handling** – Pass event handlers and custom event props.
-- **Integrated Submit & Reset Actions** – Handle form submission effortlessly.
+- **Dynamic Form Rendering** – Define form fields with a simple configuration array.
+- **Validation with Zod** – Robust schema-based validation.
+- **Fully Customizable UI** – Supports `flex` and `grid` layouts with configurable columns and gaps.
+- **Conditional Fields** – Show or hide fields based on form values.
+- **Adjustable Field Widths** – Configure widths (`full`, `half`, or custom classes).
+- **Flexible Event Handling** – Hooks for `onSubmit`, `onError`, and `onCancel`.
+- **Integrated Actions** – Built-in submit and cancel buttons with customization.
 
 ---
 
 ## 📦 Installation
+
+To add the component to your project, run the following command:
 
 ```sh
 npx shadcn@latest add https://shadcn-generic-form.vercel.app/generic-form.json
@@ -27,28 +30,60 @@ npx shadcn@latest add https://shadcn-generic-form.vercel.app/generic-form.json
 
 ### `GenericFormProps<T>`
 
-| Prop             | Type                                                                                                                                                                                                                                       | Description                                                           |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
-| `formConfig`     | `{ formFields: FormFieldConfig<z.input<T>>[]; validationSchema: T; defaultValues: DefaultValues<z.input<T>>; }`                                                                                                                            | Configuration for form fields, validation schema, and default values. |
-| `formSettings`   | `{ mode?: 'onSubmit' \| 'onBlur' \| 'onChange' \| 'onTouched' \| 'all'; disabled?: boolean; className?: string; }`                                                                                                                         | Settings for form behavior and appearance.                            |
-| `layoutSettings` | `{ layout?: 'flex' \| 'grid'; columns?: number; gap?: number; }`                                                                                                                                                                           | Controls the layout structure of the form.                            |
-| `actions`        | `{ submitButtonText?: string; cancelButtonText?: string; submitBtnClassName?: string; cancelBtnClassName?: string; onSubmit: (values: z.output<T>) => void; onError?: (errors: Record<string, unknown>) => void; onCancel?: () => void; }` | Event handlers and customization for form actions.                    |
+| Prop             | Type                        | Description                                                                              |
+| ---------------- | --------------------------- | ---------------------------------------------------------------------------------------- |
+| `formConfig`     | `FormConfig`                | Includes `formFields`, `validationSchema`, and `defaultValues`.                          |
+| `formSettings`   | `FormSettings` (Optional)   | Configuration for validation mode (`mode`), `disabled` state, and `className`.           |
+| `layoutSettings` | `LayoutSettings` (Optional) | Controls the layout structure (`layout`, `columns`, `gap`).                              |
+| `actions`        | `FormActions`               | Event handlers (`onSubmit`, `onError`, `onCancel`) and customization for action buttons. |
+
+#### Detailed Config Types
+
+##### FormConfig
+
+- `formFields`: `FormFieldConfig<z.input<T>>[]` - Array of field definitions.
+- `validationSchema`: `T` - Zod schema for validation.
+- `defaultValues`: `DefaultValues<z.input<T>>` - Initial values for the form.
+
+##### FormSettings
+
+- `mode`: `'onSubmit' | 'onBlur' | 'onChange' | 'onTouched' | 'all'` (Default: `'onSubmit'`)
+- `disabled`: `boolean`
+- `className`: `string`
+
+##### LayoutSettings
+
+- `layout`: `'flex' | 'grid'` (Default: `'flex'`)
+- `columns`: `number` (For grid layout)
+- `gap`: `number` (Gap size)
+
+##### FormActions
+
+- `onSubmit`: `(values: z.output<T>) => void`
+- `onError`: `(errors: Record<string, unknown>) => void`
+- `onCancel`: `() => void`
+- `submitButtonText`: `string`
+- `cancelButtonText`: `string`
+- `submitBtnClassName`: `string`
+- `cancelBtnClassName`: `string`
 
 ### `FormFieldConfig<T>`
 
-| Prop          | Type                                                               | Description                                                        |
-| ------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `name`        | `Path<T>`                                                          | The name of the form field, used for binding with React Hook Form. |
-| `label`       | `string`                                                           | The label displayed for the field.                                 |
-| `render`      | `(field: ControllerRenderProps<T, Path<T>>) => React.ReactElement` | A function that returns a React element to render for the field.   |
-| `width`       | `'full' \| 'half' \| string`                                       | Defines the width of the form field. Defaults to `'full'`.         |
-| `condition`   | `(values: T) => boolean`                                           | A function that determines if the field should be displayed.       |
-| `description` | `string`                                                           | Additional description or hint text for the field.                 |
+| Prop          | Type                                                               | Description                                                         |
+| ------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| `name`        | `Path<T>`                                                          | The name of the form field, matches Zod schema key.                 |
+| `label`       | `string`                                                           | Display label for the field.                                        |
+| `render`      | `(field: ControllerRenderProps<T, Path<T>>) => React.ReactElement` | Function returning the React element (Input, Select, etc.).         |
+| `width`       | `'full' \| 'half' \| string`                                       | Width of the field container. Defaults to `'full'`.                 |
+| `condition`   | `(values: T) => boolean`                                           | Function to conditionally render the field based on current values. |
+| `description` | `string`                                                           | Helper text displayed below the field.                              |
+
+---
 
 ## 🚀 Usage Example
 
 ```tsx
-import { GenericForm } from './components/generic-form';
+import { GenericForm } from '@/components/generic-form';
 import { z } from 'zod';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -166,22 +201,24 @@ export default function App() {
 }
 ```
 
+---
+
 ## 🛠️ Development
 
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```sh
    git clone https://github.com/vikramsamak/generic-form.git
    cd generic-form
    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 
    ```sh
    npm install
    ```
 
-3. Start the dev server:
+3. **Start the playground:**
 
    ```sh
    npm run dev
