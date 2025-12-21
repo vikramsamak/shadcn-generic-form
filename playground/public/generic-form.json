@@ -1,0 +1,72 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "generic-form",
+  "title": "Generic-Form",
+  "author": "Vikram Samak",
+  "description": "A highly flexible and configurable form component for ShadCN, powered by React Hook Form and Zod. Easily define fields, validation, layout, and actions with a simple configuration",
+  "dependencies": ["@hookform/resolvers", "zod", "react-hook-form"],
+  "registryDependencies": ["button", "form", "label"],
+  "files": [
+    {
+      "path": "src/generic-form/index.ts",
+      "content": "export { default as GenericForm } from './generic-form';\n",
+      "type": "registry:file",
+      "target": "src/components/generic-form/index.ts"
+    },
+    {
+      "path": "src/generic-form/form-actions.tsx",
+      "content": "import { FormActionsProps } from '@/types/form-actions.types';\nimport { JSX } from 'react';\nimport { Button } from '@/components/ui/button';\nimport { cn } from '@/lib/utils';\n\nfunction FormActions({\n  disabled,\n  submitButtonText,\n  cancelButtonText,\n  onCancel,\n  cancelBtnClassName,\n  submitBtnClassName,\n}: FormActionsProps): JSX.Element {\n  const submitButtonWidth = cancelButtonText && onCancel ? 'w-1/2' : 'w-full';\n\n  return (\n    <div className=\"flex gap-4 mt-4\">\n      <Button\n        type=\"submit\"\n        disabled={disabled}\n        aria-label=\"Submit\"\n        aria-disabled={disabled}\n        className={cn(submitButtonWidth, submitBtnClassName)}\n      >\n        {submitButtonText}\n      </Button>\n      {cancelButtonText && onCancel && (\n        <Button\n          type=\"button\"\n          onClick={onCancel}\n          aria-label=\"Cancel\"\n          aria-disabled={disabled}\n          disabled={disabled}\n          className={cn('w-1/2', cancelBtnClassName)}\n        >\n          {cancelButtonText}\n        </Button>\n      )}\n    </div>\n  );\n}\n\nexport default FormActions;\n",
+      "type": "registry:component",
+      "target": "src/components/generic-form/form-actions.tsx"
+    },
+    {
+      "path": "src/generic-form/form-field-wrapper.tsx",
+      "content": "import {\n  FormControl,\n  FormDescription,\n  FormField,\n  FormItem,\n  FormLabel,\n  FormMessage,\n} from '@/components/ui/form';\nimport { cn } from '@/lib/utils';\nimport { FieldValues, Path } from 'react-hook-form';\nimport { FormFieldWrapperProps } from '@/types/form-field-wrapper.types';\nimport { JSX } from 'react';\n\nfunction FormFieldWrapper<T extends FieldValues>({\n  formField,\n}: FormFieldWrapperProps<T>): JSX.Element {\n  const {\n    name,\n    label,\n    render: renderField,\n    width = 'full',\n    description,\n  } = formField;\n\n  return (\n    <FormField<T, Path<T>>\n      name={name}\n      render={({ field }) => (\n        <FormItem className={cn(width === 'half' ? 'w-1/2' : 'w-full')}>\n          <FormLabel>{label}</FormLabel>\n          <FormControl>{renderField(field)}</FormControl>\n          {description && <FormDescription>{description}</FormDescription>}\n          <FormMessage />\n        </FormItem>\n      )}\n    />\n  );\n}\n\nexport default FormFieldWrapper;\n",
+      "type": "registry:component",
+      "target": "src/components/generic-form/form-field-wrapper.tsx"
+    },
+    {
+      "path": "src/generic-form/generic-form.tsx",
+      "content": "import { GenericFormProps } from '@/types/generic-form.types';\nimport { zodResolver } from '@hookform/resolvers/zod';\nimport { useForm, DefaultValues } from 'react-hook-form';\nimport { z, ZodObject } from 'zod';\nimport { Form } from '@/components/ui/form';\nimport { cn } from '@/lib/utils';\nimport { JSX } from 'react';\nimport { getLayoutClassName } from './utils';\nimport FormActions from './form-actions';\nimport FormFieldWrapper from './form-field-wrapper';\n\nfunction GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({\n  formConfig,\n  formSettings,\n  layoutSettings,\n  actions,\n}: GenericFormProps<T>): JSX.Element {\n  const { formFields, validationSchema, defaultValues } = formConfig;\n  const { layout = 'flex', columns, gap } = layoutSettings ?? {};\n  const { mode = 'onSubmit', disabled, className } = formSettings ?? {};\n  const {\n    submitButtonText = 'Submit',\n    cancelButtonText,\n    onSubmit,\n    onError,\n    onCancel,\n    cancelBtnClassName,\n    submitBtnClassName,\n  } = actions;\n\n  const form = useForm<z.input<T>, any, z.output<T>>({\n    resolver: zodResolver(validationSchema),\n    defaultValues: defaultValues as DefaultValues<z.input<T>>,\n    mode,\n    disabled,\n  });\n\n  const values = form.watch();\n\n  return (\n    <Form {...form}>\n      <form\n        onSubmit={form.handleSubmit(onSubmit, onError)}\n        className={cn('space-y-4', className)}\n      >\n        <div className={getLayoutClassName(layout, columns, gap)}>\n          {formFields.map((formField) => {\n            if (formField.condition && !formField.condition(values))\n              return null;\n\n            return (\n              <FormFieldWrapper<z.input<T>>\n                key={formField.name}\n                formField={formField}\n              />\n            );\n          })}\n        </div>\n        <FormActions\n          submitButtonText={submitButtonText}\n          cancelButtonText={cancelButtonText}\n          submitBtnClassName={submitBtnClassName}\n          cancelBtnClassName={cancelBtnClassName}\n          disabled={disabled}\n          onCancel={onCancel}\n        />\n      </form>\n    </Form>\n  );\n}\n\nexport default GenericForm;\n",
+      "type": "registry:component",
+      "target": "src/components/generic-form/generic-form.tsx"
+    },
+    {
+      "path": "src/generic-form/utils.ts",
+      "content": "import { GAPS, GRID_COLS } from './constants';\nimport { cn } from '@/lib/utils';\n\nexport const getLayoutClassName = (\n  layout: 'grid' | 'flex',\n  columns?: number,\n  gap?: number\n) => {\n  const colClass = GRID_COLS[columns || 2] || 'grid-cols-2';\n  const gapClass = GAPS[gap || 4] || 'gap-4';\n\n  return cn(\n    layout === 'grid' ? 'grid' : 'flex flex-wrap',\n    layout === 'grid' ? `${colClass} ${gapClass}` : gapClass\n  );\n};\n",
+      "type": "registry:file",
+      "target": "src/components/generic-form/utils.ts"
+    },
+    {
+      "path": "src/generic-form/constants.ts",
+      "content": "export const GRID_COLS: Record<number, string> = {\n  1: 'grid-cols-1',\n  2: 'grid-cols-2',\n  3: 'grid-cols-3',\n  4: 'grid-cols-4',\n  5: 'grid-cols-5',\n  6: 'grid-cols-6',\n  7: 'grid-cols-7',\n  8: 'grid-cols-8',\n  9: 'grid-cols-9',\n  10: 'grid-cols-10',\n  11: 'grid-cols-11',\n  12: 'grid-cols-12',\n};\n\nexport const GAPS: Record<number, string> = {\n  0: 'gap-0',\n  1: 'gap-1',\n  2: 'gap-2',\n  3: 'gap-3',\n  4: 'gap-4',\n  5: 'gap-5',\n  6: 'gap-6',\n  8: 'gap-8',\n  10: 'gap-10',\n  12: 'gap-12',\n  16: 'gap-16',\n};\n",
+      "type": "registry:file",
+      "target": "src/components/generic-form/constants.ts"
+    },
+    {
+      "path": "src/types/form-actions.types.ts",
+      "content": "export interface FormActionsProps {\n  disabled?: boolean;\n  submitButtonText: string;\n  cancelButtonText?: string;\n  onCancel?: () => void;\n  submitBtnClassName?: string;\n  cancelBtnClassName?: string;\n}\n",
+      "type": "registry:file",
+      "target": "src/types/form-actions.types.ts"
+    },
+    {
+      "path": "src/types/form-field.types.ts",
+      "content": "import { ControllerRenderProps, FieldValues, Path } from 'react-hook-form';\n\nexport interface FormFieldConfig<T extends FieldValues> {\n  name: Path<T>;\n  label: string;\n  render: (field: ControllerRenderProps<T, Path<T>>) => React.ReactElement;\n  width?: 'full' | 'half' | string;\n  condition?: (values: T) => boolean;\n  description?: string;\n}\n",
+      "type": "registry:file",
+      "target": "src/types/form-field.types.ts"
+    },
+    {
+      "path": "src/types/form-field-wrapper.types.ts",
+      "content": "import { FieldValues } from 'react-hook-form';\nimport { FormFieldConfig } from './form-field.types';\n\nexport interface FormFieldWrapperProps<T extends FieldValues> {\n  formField: FormFieldConfig<T>;\n}\n",
+      "type": "registry:file",
+      "target": "src/types/form-field-wrapper.types.ts"
+    },
+    {
+      "path": "src/types/generic-form.types.ts",
+      "content": "import { z, ZodObject, ZodRawShape } from 'zod';\nimport { DefaultValues } from 'react-hook-form';\nimport { FormFieldConfig } from './form-field.types';\n\nexport interface GenericFormProps<T extends ZodObject<ZodRawShape>> {\n  formConfig: {\n    formFields: FormFieldConfig<z.input<T>>[];\n    validationSchema: T;\n    defaultValues: DefaultValues<z.input<T>>;\n  };\n\n  formSettings?: {\n    mode?: 'onSubmit' | 'onBlur' | 'onChange' | 'onTouched' | 'all';\n    disabled?: boolean;\n    className?: string;\n  };\n\n  layoutSettings?: {\n    layout?: 'flex' | 'grid';\n    columns?: number;\n    gap?: number;\n  };\n\n  actions: {\n    submitButtonText?: string;\n    cancelButtonText?: string;\n    submitBtnClassName?: string;\n    cancelBtnClassName?: string;\n    onSubmit: (values: z.output<T>) => void;\n    onError?: (errors: Record<string, unknown>) => void;\n    onCancel?: () => void;\n  };\n}\n\nexport default GenericFormProps;\n",
+      "type": "registry:file",
+      "target": "src/types/generic-form.types.ts"
+    }
+  ],
+  "type": "registry:component"
+}
