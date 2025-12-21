@@ -11,7 +11,7 @@ import {
 import { cn } from '@/lib/utils';
 import { PlaygroundField } from '../types';
 import { FIELD_TYPES } from './constants';
-import { FieldCard } from './FieldCard';
+import { FieldCard } from './field-card';
 import { usePlaygroundStore } from '../store';
 
 export function FieldsList() {

@@ -6,7 +6,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import { OptionsEditor } from './OptionsEditor';
+import { OptionsEditor } from './options-editor';
 import { usePlaygroundStore } from '../store';
 
 export function PropertyEditor() {

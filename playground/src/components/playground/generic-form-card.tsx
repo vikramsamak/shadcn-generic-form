@@ -1,15 +1,15 @@
-import { GenericForm } from './generic-form';
-import { FORM_FIELDS } from '../constants/Formfields';
+import { GenericForm } from '../generic-form';
+import { FORM_FIELDS } from '../../constants/form-fields';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from './ui/card';
+} from '../ui/card';
 import { z } from 'zod';
-import { ScrollArea } from './ui/scroll-area';
-import { Separator } from './ui/separator';
+import { ScrollArea } from '../ui/scroll-area';
+import { Separator } from '../ui/separator';
 
 function GenericFormCard() {
   const defaultValues = {

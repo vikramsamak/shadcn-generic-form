@@ -1,7 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import ConfigPanel from './ConfigPanel';
-import FieldEditor from './FieldEditor';
-import PreviewPanel from './PreviewPanel';
+import ConfigPanel from './config-panel';
+import FieldEditor from './field-editor';
+import PreviewPanel from './preview-panel';
 import { ModeToggle } from '../mode-toggle';
 import { Button } from '../ui/button';
 import { Github } from 'lucide-react';

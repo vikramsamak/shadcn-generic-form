@@ -1,5 +1,5 @@
-import { FieldsList } from './field-editor/FieldsList';
-import { PropertyEditor } from './field-editor/PropertyEditor';
+import { FieldsList } from './field-editor/fields-list';
+import { PropertyEditor } from './field-editor/property-editor';
 
 export default function FieldEditor() {
   return (
