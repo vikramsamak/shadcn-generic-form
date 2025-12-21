@@ -1,7 +1,7 @@
 import { buildFormProps } from './utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { usePlaygroundStore } from './store';
-import GenericForm from '@/components/generic-form/GenericForm';
+import { GenericForm } from '@/components/generic-form';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import CodeView from './code-view';
 import { Code, Eye } from 'lucide-react';

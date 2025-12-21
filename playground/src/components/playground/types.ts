@@ -1,4 +1,4 @@
-import { FormFieldConfig } from '@/types/FormField.types';
+import { FormFieldConfig } from '@/types/form-field.types';
 
 export interface LayoutSettings {
   layout: 'grid' | 'flex';

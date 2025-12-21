@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PlaygroundState } from './types';
-import { FormFieldConfig } from '@/types/FormField.types';
+import { FormFieldConfig } from '@/types/form-field.types';
 import { z } from 'zod';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
