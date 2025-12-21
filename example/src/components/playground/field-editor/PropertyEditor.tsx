@@ -1,4 +1,5 @@
-import { Settings2 } from 'lucide-react';
+import { Settings2, ChevronLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -10,7 +11,7 @@ import { OptionsEditor } from './OptionsEditor';
 
 interface PropertyEditorProps {
   selectedField: PlaygroundField | undefined;
-  showPropertiesOnMobile: boolean;
+  showProperties: boolean;
   onUpdateField: (id: string, updates: Partial<PlaygroundField>) => void;
   onAddOption: () => void;
   onUpdateOption: (
@@ -18,30 +19,41 @@ interface PropertyEditorProps {
     updates: { label: string; value: string }
   ) => void;
   onRemoveOption: (index: number) => void;
+  onBack: () => void;
 }
 
 export function PropertyEditor({
   selectedField,
-  showPropertiesOnMobile,
+  showProperties,
   onUpdateField,
   onAddOption,
   onUpdateOption,
   onRemoveOption,
+  onBack,
 }: PropertyEditorProps) {
   return (
     <div
       className={cn(
-        'flex flex-col min-h-0 bg-muted/5',
-        'lg:flex-1 lg:h-[55%]',
-        !showPropertiesOnMobile ? 'hidden lg:flex' : 'flex-1'
+        'flex flex-col min-h-0 bg-muted/5 flex-1',
+        !showProperties && 'hidden'
       )}
     >
       {selectedField ? (
         <div className="flex flex-col h-full overflow-hidden">
-          <div className="p-4 border-b bg-background shrink-0 flex items-center justify-between">
-            <div>
-              <h3 className="text-sm font-semibold">Field Properties</h3>
-              <p className="text-[10px] font-mono text-muted-foreground uppercase">
+          <div className="p-4 border-b bg-background shrink-0 flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onBack}
+              className="h-8 w-8 shrink-0"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <div className="overflow-hidden">
+              <h3 className="text-sm font-semibold truncate">
+                Field Properties
+              </h3>
+              <p className="text-[10px] font-mono text-muted-foreground uppercase truncate">
                 ID: {selectedField.id}
               </p>
             </div>

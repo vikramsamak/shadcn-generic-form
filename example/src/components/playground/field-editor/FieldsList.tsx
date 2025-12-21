@@ -17,7 +17,7 @@ import { useState } from 'react';
 interface FieldsListProps {
   fields: PlaygroundField[];
   selectedFieldId: string | null;
-  showPropertiesOnMobile: boolean;
+  showProperties: boolean;
   onAddField: (type: PlaygroundField['type']) => void;
   onSelectField: (id: string) => void;
   onDuplicateField: (id: string) => void;
@@ -27,7 +27,7 @@ interface FieldsListProps {
 export function FieldsList({
   fields,
   selectedFieldId,
-  showPropertiesOnMobile,
+  showProperties,
   onAddField,
   onSelectField,
   onDuplicateField,
@@ -39,9 +39,8 @@ export function FieldsList({
   return (
     <div
       className={cn(
-        'flex flex-col min-h-0 shrink-0',
-        'lg:flex-1 lg:h-[45%]',
-        showPropertiesOnMobile ? 'hidden lg:flex' : 'flex-1'
+        'flex flex-col min-h-0 bg-background flex-1',
+        showProperties && 'hidden'
       )}
     >
       <div className="p-4 border-b bg-background/50 shrink-0">

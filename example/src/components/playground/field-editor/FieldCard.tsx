@@ -1,4 +1,4 @@
-import { Copy, Trash2, MoreVertical, Type } from 'lucide-react';
+import { Copy, Trash2, MoreVertical, Type, Edit2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
@@ -75,6 +75,10 @@ export function FieldCard({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => onSelect(field.id)}>
+              <Edit2 className="mr-2 h-4 w-4" />
+              Edit Properties
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onDuplicate(field.id)}>
               <Copy className="mr-2 h-4 w-4" />
               Duplicate

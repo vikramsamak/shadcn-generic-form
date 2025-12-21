@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { PlaygroundField } from './types';
-import { Button } from '@/components/ui/button';
-import { ChevronLeft } from 'lucide-react';
 import { FieldsList } from './field-editor/FieldsList';
 import { PropertyEditor } from './field-editor/PropertyEditor';
 
@@ -21,13 +19,13 @@ export default function FieldEditor({
   onDuplicateField,
 }: FieldEditorProps) {
   const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null);
-  const [showPropertiesOnMobile, setShowPropertiesOnMobile] = useState(false);
+  const [showProperties, setShowProperties] = useState(false);
 
   const selectedField = fields.find((f) => f.id === selectedFieldId);
 
   const handleSelectField = (id: string) => {
     setSelectedFieldId(id);
-    setShowPropertiesOnMobile(true);
+    setShowProperties(true);
   };
 
   const handleAddOption = () => {
@@ -60,43 +58,25 @@ export default function FieldEditor({
 
   return (
     <div className="flex flex-col h-full bg-background border-r">
-      {/* Mobile Back Button */}
-      {showPropertiesOnMobile && selectedField && (
-        <div className="lg:hidden p-3 border-b flex items-center bg-muted/30">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowPropertiesOnMobile(false)}
-            className="flex items-center gap-2"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            Back to Fields
-          </Button>
-        </div>
-      )}
-
       <div className="flex-1 flex flex-col min-h-0 bg-background">
         <FieldsList
           fields={fields}
           selectedFieldId={selectedFieldId}
-          showPropertiesOnMobile={showPropertiesOnMobile}
+          showProperties={showProperties}
           onAddField={onAddField}
           onSelectField={handleSelectField}
           onDuplicateField={onDuplicateField}
           onRemoveField={onRemoveField}
         />
 
-        {selectedField && (
-          <div className="hidden lg:block h-px bg-border shrink-0" />
-        )}
-
         <PropertyEditor
           selectedField={selectedField}
-          showPropertiesOnMobile={showPropertiesOnMobile}
+          showProperties={showProperties}
           onUpdateField={onUpdateField}
           onAddOption={handleAddOption}
           onUpdateOption={handleUpdateOption}
           onRemoveOption={handleRemoveOption}
+          onBack={() => setShowProperties(false)}
         />
       </div>
     </div>
