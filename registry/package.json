@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "registry:build": "shadcn build",
-    "registry:build-dist": "shadcn build --output ../example/public/",
+    "registry:build-dist": "shadcn build --output ../playground/public/",
     "preview": "vite preview",
     "test-ui": "vitest --ui",
     "test": "vitest"
