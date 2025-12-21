@@ -107,6 +107,23 @@ export function usePlayground() {
     }));
   }, []);
 
+  const duplicateField = useCallback((id: string) => {
+    setState((prev) => {
+      const fieldIndex = prev.fields.findIndex((f) => f.id === id);
+      if (fieldIndex === -1) return prev;
+      const field = prev.fields[fieldIndex];
+      const newField = {
+        ...field,
+        id: generateId(),
+        name: `${field.name}_copy`,
+        label: `${field.label} (Copy)`,
+      };
+      const newFields = [...prev.fields];
+      newFields.splice(fieldIndex + 1, 0, newField);
+      return { ...prev, fields: newFields };
+    });
+  }, []);
+
   return {
     state,
     updateLayoutSettings,
@@ -115,5 +132,6 @@ export function usePlayground() {
     addField,
     updateField,
     removeField,
+    duplicateField,
   };
 }

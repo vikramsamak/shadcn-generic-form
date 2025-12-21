@@ -16,6 +16,7 @@ export default function Playground() {
     addField,
     updateField,
     removeField,
+    duplicateField,
   } = usePlayground();
 
   const configContent = (
@@ -35,6 +36,7 @@ export default function Playground() {
       onAddField={addField}
       onUpdateField={updateField}
       onRemoveField={removeField}
+      onDuplicateField={duplicateField}
     />
   );
 
@@ -64,10 +66,10 @@ export default function Playground() {
       <div className="flex-1 overflow-hidden">
         {/* Desktop Layout (lg+) */}
         <div className="hidden lg:flex h-full">
-          <div className="w-1/4 min-w-[300px] h-full border-r overflow-hidden">
+          <div className="w-[30%] h-full border-r overflow-hidden">
             {configContent}
           </div>
-          <div className="w-1/4 min-w-[300px] h-full border-r overflow-hidden">
+          <div className="w-[30%] h-full border-r overflow-hidden">
             {editorContent}
           </div>
           <div className="flex-1 h-full overflow-hidden">{previewContent}</div>
