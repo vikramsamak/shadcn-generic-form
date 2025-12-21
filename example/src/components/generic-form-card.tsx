@@ -9,7 +9,6 @@ import {
 } from './ui/card';
 import { z } from 'zod';
 import { ScrollArea } from './ui/scroll-area';
-import { FileText } from 'lucide-react';
 import { Separator } from './ui/separator';
 
 function GenericFormCard() {
@@ -53,7 +52,13 @@ function GenericFormCard() {
     <Card className="w-full shadow-lg rounded-2xl">
       <CardHeader className="flex flex-col gap-2">
         <div className="flex items-center gap-3">
-          <FileText className="w-6 h-6 text-primary" /> {/* Icon */}
+          <div className="w-8 h-8 rounded-md overflow-hidden border">
+            <img
+              src="/logo.svg"
+              alt="Generic Form Logo"
+              className="w-full h-full"
+            />
+          </div>
           <CardTitle className="text-xl font-semibold">Generic Form</CardTitle>
         </div>
         <CardDescription className="text-sm text-muted-foreground">

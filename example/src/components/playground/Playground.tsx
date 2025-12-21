@@ -12,8 +12,12 @@ export default function Playground() {
       {/* Workspace Header */}
       <div className="h-14 border-b flex items-center justify-between px-4 lg:px-6 bg-muted/20 shrink-0">
         <div className="flex items-center gap-4">
-          <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
-            <div className="h-4 w-4 rounded-sm bg-primary" />
+          <div className="h-9 w-9 rounded-lg overflow-hidden border border-border/50">
+            <img
+              src="/logo.svg"
+              alt="Generic Form Logo"
+              className="h-full w-full"
+            />
           </div>
           <div className="flex flex-col">
             <h1 className="text-sm font-bold tracking-tight leading-none">
