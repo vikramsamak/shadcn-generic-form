@@ -40,7 +40,7 @@ export function PropertyEditor({
     >
       {selectedField ? (
         <div className="flex flex-col h-full overflow-hidden">
-          <div className="p-4 border-b bg-background shrink-0 flex items-center gap-4">
+          <div className="p-4 border-b shrink-0 flex items-center gap-4 h-14 bg-background/50">
             <Button
               variant="ghost"
               size="icon"
@@ -50,10 +50,10 @@ export function PropertyEditor({
               <ChevronLeft className="h-4 w-4" />
             </Button>
             <div className="overflow-hidden">
-              <h3 className="text-sm font-semibold truncate">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground truncate">
                 Field Properties
               </h3>
-              <p className="text-[10px] font-mono text-muted-foreground uppercase truncate">
+              <p className="text-[9px] font-mono text-muted-foreground/50 uppercase truncate leading-none mt-0.5">
                 ID: {selectedField.id}
               </p>
             </div>

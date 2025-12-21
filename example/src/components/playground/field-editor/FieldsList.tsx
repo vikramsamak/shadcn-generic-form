@@ -43,10 +43,13 @@ export function FieldsList({
         showProperties && 'hidden'
       )}
     >
-      <div className="p-4 border-b bg-background/50 shrink-0">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">
+      <div className="p-4 border-b shrink-0 flex items-center h-14 bg-background/50">
+        <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
           Form Fields
         </h2>
+      </div>
+
+      <div className="p-4 border-b bg-muted/10 shrink-0">
         <div className="flex gap-2">
           <Select
             value={newFieldType}
