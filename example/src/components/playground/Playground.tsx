@@ -68,8 +68,8 @@ export default function Playground() {
         {/* Mobile Layout (Default, hidden on lg) */}
         <div className="lg:hidden h-full flex flex-col">
           <Tabs defaultValue="preview" className="flex-1 flex flex-col min-h-0">
-            <div className="border-b bg-background px-4">
-              <TabsList className="h-12 w-full justify-start bg-transparent p-0 gap-6">
+            <div className="border-b bg-background">
+              <TabsList className="h-12 w-full justify-start bg-transparent p-0">
                 <TabsTrigger
                   value="config"
                   className="h-full rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-0 text-xs font-bold uppercase tracking-wider"
@@ -86,7 +86,7 @@ export default function Playground() {
                   value="preview"
                   className="h-full rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-0 text-xs font-bold uppercase tracking-wider"
                 >
-                  Preview
+                  Result
                 </TabsTrigger>
               </TabsList>
             </div>
