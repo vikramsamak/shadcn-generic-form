@@ -10,9 +10,10 @@ import {
 import { generateId } from './utils';
 
 interface PlaygroundStore extends PlaygroundState {
-  // Selection State
+  // UI State
   selectedFieldId: string | null;
   showProperties: boolean;
+  newFieldType: PlaygroundField['type'];
 
   // Actions - Settings
   updateLayoutSettings: (settings: Partial<LayoutSettings>) => void;
@@ -25,9 +26,10 @@ interface PlaygroundStore extends PlaygroundState {
   removeField: (id: string) => void;
   duplicateField: (id: string) => void;
 
-  // Actions - Selection
+  // Actions - UI
   setSelectedFieldId: (id: string | null) => void;
   setShowProperties: (show: boolean) => void;
+  setNewFieldType: (type: PlaygroundField['type']) => void;
   selectField: (id: string) => void;
 
   // Actions - Options
@@ -81,6 +83,7 @@ export const usePlaygroundStore = create<PlaygroundStore>()(
       ...initialState,
       selectedFieldId: null,
       showProperties: false,
+      newFieldType: 'text',
 
       updateLayoutSettings: (settings) =>
         set((state) => ({
@@ -146,6 +149,7 @@ export const usePlaygroundStore = create<PlaygroundStore>()(
 
       setSelectedFieldId: (id) => set({ selectedFieldId: id }),
       setShowProperties: (show) => set({ showProperties: show }),
+      setNewFieldType: (type) => set({ newFieldType: type }),
       selectField: (id) => set({ selectedFieldId: id, showProperties: true }),
 
       addOption: (fieldId) => {

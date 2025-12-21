@@ -12,15 +12,18 @@ import { cn } from '@/lib/utils';
 import { PlaygroundField } from '../types';
 import { FIELD_TYPES } from './constants';
 import { FieldCard } from './FieldCard';
-import { useState } from 'react';
 import { usePlaygroundStore } from '../store';
 
 export function FieldsList() {
-  const { fields, selectedFieldId, showProperties, addField, selectField } =
-    usePlaygroundStore();
-
-  const [newFieldType, setNewFieldType] =
-    useState<PlaygroundField['type']>('text');
+  const {
+    fields,
+    selectedFieldId,
+    showProperties,
+    newFieldType,
+    addField,
+    selectField,
+    setNewFieldType,
+  } = usePlaygroundStore();
 
   return (
     <div
