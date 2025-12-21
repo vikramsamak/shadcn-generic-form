@@ -8,20 +8,39 @@ import { Github } from 'lucide-react';
 
 export default function Playground() {
   return (
-    <div className="h-screen w-full flex flex-col bg-background">
-      {/* Header */}
-      <div className="p-4 border-b flex items-center justify-between shrink-0 h-16">
-        <h1 className="text-xl lg:text-2xl font-bold truncate">
-          Generic Form Playground
-        </h1>
+    <div className="h-screen w-full flex flex-col bg-background overflow-hidden">
+      {/* Workspace Header */}
+      <div className="h-14 border-b flex items-center justify-between px-4 lg:px-6 bg-muted/20 shrink-0">
+        <div className="flex items-center gap-4">
+          <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+            <div className="h-4 w-4 rounded-sm bg-primary" />
+          </div>
+          <div className="flex flex-col">
+            <h1 className="text-sm font-bold tracking-tight leading-none">
+              Form Playground
+            </h1>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold mt-1">
+              v2.0
+            </p>
+          </div>
+        </div>
+
         <div className="flex items-center gap-2 lg:gap-4">
+          <div className="hidden sm:flex items-center px-2 py-1 rounded bg-green-500/10 text-[10px] font-bold text-green-600 uppercase tracking-tight border border-green-500/20 mr-2">
+            <div className="h-1 w-1 rounded-full bg-green-500 animate-pulse mr-1.5" />
+            Live Preview
+          </div>
           <a
             href="https://github.com/vikramsamak/generic-form"
             target="_blank"
             rel="noreferrer"
           >
-            <Button variant="ghost" size="icon" className="rounded-full">
-              <Github className="h-5 w-5" />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 rounded-full"
+            >
+              <Github className="h-4 w-4" />
             </Button>
           </a>
           <ModeToggle />
