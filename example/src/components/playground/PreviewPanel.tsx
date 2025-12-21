@@ -27,8 +27,10 @@ export default function PreviewPanel({ state }: PreviewPanelProps) {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="p-4 border-b shrink-0">
-        <h2 className="text-lg font-semibold">Preview</h2>
+      <div className="p-4 border-b shrink-0 flex items-center h-14 bg-background/50">
+        <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+          Preview
+        </h2>
       </div>
 
       <div className="flex-1 overflow-hidden p-4">

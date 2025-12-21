@@ -17,17 +17,19 @@ export interface FormActionsSettings {
   showCancel: boolean;
 }
 
+export type FieldType =
+  | 'text'
+  | 'textarea'
+  | 'select'
+  | 'checkbox'
+  | 'radio'
+  | 'slider'
+  | 'datePicker'
+  | 'switch';
+
 export interface PlaygroundField extends Omit<FormFieldConfig<any>, 'render'> {
   id: string; // Unique ID for draggable/key
-  type:
-    | 'text'
-    | 'textarea'
-    | 'select'
-    | 'checkbox'
-    | 'radio'
-    | 'slider'
-    | 'datePicker'
-    | 'switch';
+  type: FieldType;
   label: string;
   name: string;
   placeholder?: string;
