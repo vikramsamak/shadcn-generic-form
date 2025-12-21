@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
 import { FieldValues, Path } from 'react-hook-form';
-import { FormFieldWrapperProps } from '@/types/FormFieldWrapper.types';
+import { FormFieldWrapperProps } from '@/types/form-field-wrapper.types';
 import { JSX } from 'react';
 
 function FormFieldWrapper<T extends FieldValues>({

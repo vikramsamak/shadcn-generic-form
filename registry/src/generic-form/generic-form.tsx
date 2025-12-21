@@ -1,4 +1,4 @@
-import { GenericFormProps } from '@/types/GenericForm.types';
+import { GenericFormProps } from '@/types/generic-form.types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, DefaultValues } from 'react-hook-form';
 import { z, ZodObject } from 'zod';
@@ -6,8 +6,8 @@ import { Form } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
 import { JSX } from 'react';
 import { getLayoutClassName } from './utils';
-import FormActions from './FormActions';
-import FormFieldWrapper from './FormFieldWrapper';
+import FormActions from './form-actions';
+import FormFieldWrapper from './form-field-wrapper';
 
 function GenericForm<T extends ZodObject<{ [key: string]: z.ZodTypeAny }>>({
   formConfig,

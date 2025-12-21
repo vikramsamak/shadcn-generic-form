@@ -1,5 +1,5 @@
 import { FieldValues } from 'react-hook-form';
-import { FormFieldConfig } from './FormField.types';
+import { FormFieldConfig } from './form-field.types';
 
 export interface FormFieldWrapperProps<T extends FieldValues> {
   formField: FormFieldConfig<T>;

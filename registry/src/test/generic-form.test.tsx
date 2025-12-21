@@ -1,8 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { z } from 'zod';
-import { FormFieldConfig } from '../types/FormField.types';
-import GenericForm from '../generic-form/GenericForm';
+import { FormFieldConfig } from '../types/form-field.types';
+import GenericForm from '../generic-form/generic-form';
 
 describe('GenericForm', () => {
   const validationSchema = z.object({

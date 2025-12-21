@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { useForm } from 'react-hook-form';
-import FormFieldWrapper from '../generic-form/FormFieldWrapper';
+import FormFieldWrapper from '../generic-form/form-field-wrapper';
 import { Form } from '@/components/ui/form';
-import { FormFieldConfig } from '@/types/FormField.types';
+import { FormFieldConfig } from '@/types/form-field.types';
 
 describe('FormFieldWrapper', () => {
   const TestComponent = ({

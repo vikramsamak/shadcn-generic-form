@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import FormActions from '../generic-form/FormActions';
+import FormActions from '../generic-form/form-actions';
 
 describe('FormActions', () => {
   it('should render only the submit button by default', () => {

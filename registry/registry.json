@@ -16,19 +16,19 @@
           "target": "src/components/generic-form/index.ts"
         },
         {
-          "path": "src/generic-form/FormActions.tsx",
+          "path": "src/generic-form/form-actions.tsx",
           "type": "registry:component",
-          "target": "src/components/generic-form/FormActions.tsx"
+          "target": "src/components/generic-form/form-actions.tsx"
         },
         {
-          "path": "src/generic-form/FormFieldWrapper.tsx",
+          "path": "src/generic-form/form-field-wrapper.tsx",
           "type": "registry:component",
-          "target": "src/components/generic-form/FormFieldWrapper.tsx"
+          "target": "src/components/generic-form/form-field-wrapper.tsx"
         },
         {
-          "path": "src/generic-form/GenericForm.tsx",
+          "path": "src/generic-form/generic-form.tsx",
           "type": "registry:component",
-          "target": "src/components/generic-form/GenericForm.tsx"
+          "target": "src/components/generic-form/generic-form.tsx"
         },
         {
           "path": "src/generic-form/utils.ts",
@@ -41,24 +41,24 @@
           "target": "src/components/generic-form/constants.ts"
         },
         {
-          "path": "src/types/FormActions.types.ts",
+          "path": "src/types/form-actions.types.ts",
           "type": "registry:file",
-          "target": "src/types/FormActions.types.ts"
+          "target": "src/types/form-actions.types.ts"
         },
         {
-          "path": "src/types/FormField.types.ts",
+          "path": "src/types/form-field.types.ts",
           "type": "registry:file",
-          "target": "src/types/FormField.types.ts"
+          "target": "src/types/form-field.types.ts"
         },
         {
-          "path": "src/types/FormFieldWrapper.types.ts",
+          "path": "src/types/form-field-wrapper.types.ts",
           "type": "registry:file",
-          "target": "src/types/FormFieldWrapper.types.ts"
+          "target": "src/types/form-field-wrapper.types.ts"
         },
         {
-          "path": "src/types/GenericForm.types.ts",
+          "path": "src/types/generic-form.types.ts",
           "type": "registry:file",
-          "target": "src/types/GenericForm.types.ts"
+          "target": "src/types/generic-form.types.ts"
         }
       ],
       "dependencies": ["@hookform/resolvers", "zod", "react-hook-form"],
