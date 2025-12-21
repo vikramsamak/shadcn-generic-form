@@ -120,7 +120,7 @@ export default function FieldEditor({
         </div>
 
         {selectedField ? (
-          <ScrollArea className="h-1/2 min-h-[250px] bg-muted/30">
+          <ScrollArea className="flex-1 lg:h-1/2 lg:min-h-[250px] bg-muted/30 border-t">
             <div className="p-4 space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="font-semibold text-sm">Properties</h3>
@@ -205,7 +205,7 @@ export default function FieldEditor({
             </div>
           </ScrollArea>
         ) : (
-          <div className="h-1/2 min-h-[250px] flex items-center justify-center text-sm text-muted-foreground bg-muted/10 border-t">
+          <div className="flex-1 lg:h-1/2 lg:min-h-[250px] flex items-center justify-center text-sm text-muted-foreground bg-muted/10 border-t">
             Select a field to edit properties
           </div>
         )}
